@@ -2,13 +2,18 @@
 #include "Car.h"
 #include "Notification.h"
 #include<vector>
+#include "User.h"
 #include<string>
-class Owner
+class Owner:public User
 {
 private:
 	vector<Car>cars;
-	int totalProfit;
 	vector<Notification>inbox;
-
+public:
+	Owner(string _id, string _userName, string _password, int _totalMoney, vector<Car>_cars,
+		vector<Notification>_inbox);
+	Owner(string _id, string _userName, string _password, int _totalMoney);
+	void displayInfo();
+	string toBeWrittenInFile();
 };
 
