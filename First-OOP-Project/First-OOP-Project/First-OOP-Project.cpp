@@ -9,6 +9,7 @@ using namespace std;
 int main(){
     
     Organization org;
+    
     org.readFiles();
     cout << "\t\t\t\t\t\t\tHello\n\n";
     cout << "1->sign in \n";

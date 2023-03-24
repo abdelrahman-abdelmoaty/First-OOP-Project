@@ -19,7 +19,6 @@ User::User(string _username, string _password)
 	password = _password;
 	totalMoney = 0;
 	nOfUsers++;
-	
 }
 
 bool User::checkUsernameWithPassword(string _username, string _password)

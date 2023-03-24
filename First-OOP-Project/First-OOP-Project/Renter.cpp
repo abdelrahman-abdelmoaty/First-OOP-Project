@@ -34,8 +34,24 @@ void Renter::displayInfo()
 	int inp;
 	cin >> inp;
 
-	if (inp) {
+	if (inp==1) {
+				
+		
+		showAvailableCars();
+
+	}
+	else {
+		if (inp == 2) {
 			
+			for (auto r : rentingProcesses) {
+
+				r.displayInfo();
+			}
+			
+
+		}
+
+		
 	}
 
 
@@ -52,6 +68,41 @@ string Renter::toBeWrittenInFile()
 	s += "{}\n";
 	//
 	return s;
+
+}
+
+void Renter::showAvailableCars()
+{	
+	system("cls");
+	Organization org;
+	
+	Car choosenCar =org.showAllCars();
+
+
+	if (choosenCar.getModel() !="dummy") {
+		
+		
+		cout << "Are you sure you want to rent this car with id ?" << choosenCar.getID() << '\n';
+		int response;
+		cin >> response;
+		if (response == 1) {
+
+			currentCar = choosenCar.getID();
+			choosenCar.setIsRented();
+			// we should get the Date
+			// I think we should here start a renting process and make an attribute called isTheRenting still Running or not
+			// and when the renter end the rent we calculate the fees using the date 
+
+
+			return;
+		}
+		else {
+			// we will see wether we will call the function again or end 
+
+		}
+
+	}
+
 
 }
 
