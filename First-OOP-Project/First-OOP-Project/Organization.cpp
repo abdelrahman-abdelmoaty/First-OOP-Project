@@ -1,4 +1,7 @@
 #include "Organization.h"
+#include <fstream>
+#include <string>
+#include <vector>
 
 using namespace std;
 Organization::Organization()
@@ -146,12 +149,28 @@ vector<string> Organization::formatAsVectorOfString(string s)
 	return vector<string>();
 }
 
-vector<Notification> Organization::readNotifications()
-{
+vector<Notification> Organization::readNotifications(){
+	vector <Notification> notifications;
+	vector <int> x;
+	ifstream file("Notifications.txt");
+	string line;
+	//string notType, notId, owner, rentedCarId, renter, rentingDate, addingDate, vertificationDate;
+	string fields[6];
+	if (file.is_open()) {
+		while (file >> fields[0] >> fields[1] >> fields[2] >> fields[3] >> fields[4] >> fields[5]) {
+			for (int i = 0; i < 6; i++) {
+				cout << fields[i] << "\t";
+			}
+			cout << endl;
+			//notifications.push_back(line);
+		}
+		file.close();
+	}
+	else {
+		cout << "Unable to open file" << std::endl;
+	}
 
-	// (2) will implement this 
-
-	return vector<Notification>();
+	return notifications;
 }
 
 vector<RentingProcess> Organization::readRentingProcesss()

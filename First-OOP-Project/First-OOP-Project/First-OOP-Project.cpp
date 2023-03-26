@@ -9,8 +9,9 @@ using namespace std;
 int main(){
     
     Organization org;
-    
-    org.readFiles();
+    org.readNotifications();
+
+    /*org.readFiles();
     cout << "\t\t\t\t\t\t\tHello\n\n";
     cout << "1->sign in \n";
     cout << "2->sign up \n";
@@ -54,6 +55,6 @@ int main(){
     }
 
     
-    org.writeFiles();
+    org.writeFiles();*/
 
 }
