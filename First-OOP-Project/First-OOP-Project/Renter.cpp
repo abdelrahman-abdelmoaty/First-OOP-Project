@@ -74,8 +74,9 @@ string Renter::toBeWrittenInFile()
 void Renter::showAvailableCars()
 {	
 	system("cls");
-	Organization org;
-	
+	// that is wrong
+	Organization org;		
+			
 	Car choosenCar =org.showAllCars();
 
 

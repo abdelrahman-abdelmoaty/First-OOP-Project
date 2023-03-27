@@ -8,7 +8,13 @@ using namespace std;
 
 int main(){
     
-    Organization org;
+
+    int numberOfCars, numberOfRentings;
+    ifstream myFile("counter.txt");
+    myFile >> numberOfCars >> numberOfRentings;
+    myFile.close();
+
+    Organization org(numberOfCars,numberOfRentings);
     
     org.readFiles();
     cout << "\t\t\t\t\t\t\tHello\n\n";

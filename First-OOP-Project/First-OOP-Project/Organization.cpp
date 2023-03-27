@@ -1,10 +1,18 @@
 #include "Organization.h"
-
+#include<iostream>
+#include<fstream>
 using namespace std;
 Organization::Organization()
 {	
-	allRentingProcesses = vector<RentingProcess>(100);
-	allCars=vector<Car>(100);
+	
+}
+
+Organization::Organization(int nOfCars, int nOfRentings)
+{
+
+	allRentingProcesses = vector<RentingProcess>(nOfRentings);
+	allCars = vector<Car>(nOfCars);
+
 
 }
 
@@ -82,18 +90,46 @@ void Organization::readFiles()
 
 }
 
+
 void Organization::writeFiles()
 {
 
 	ofstream myFile;
 	myFile.open("Users.txt");
-
 	for (int i = 0; i < allUsers.size(); i++) {
 		string s=allUsers[i]->toBeWrittenInFile();
 		myFile << s;
 		
 	}
 	myFile.close();
+
+	ofstream carsFiles("Cars.txt");
+	for (int i = 0; i < allCars.size(); i++) {
+				
+		allCars[i].getWhatTobeWrittenInFile();
+		
+	}
+
+	for (int i = 0; i < allRentingProcesses.size(); i++) {
+
+		allRentingProcesses[i].getWhatTobeWrittenInFile();
+
+	}
+	
+	for (int i = 0; i < allNotifications.size(); i++) {
+
+		allNotifications[i].getWhatTobeWrittenInFile();
+				
+	}
+
+
+	ofstream counterFile;
+	counterFile.open("counter.txt");
+	counterFile << allCars.size() << " " << allRentingProcesses.size();
+	counterFile.close();
+
+
+
 }
 
 

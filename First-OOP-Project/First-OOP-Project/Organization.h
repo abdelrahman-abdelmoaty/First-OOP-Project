@@ -20,6 +20,7 @@ private:
 
 public:
 	Organization();
+	Organization(int nOfCars,int nOfRentings);
 	void readFiles();
 	void writeFiles();
 	vector<Car> readCars();
