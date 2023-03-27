@@ -1,25 +1,20 @@
 #include "Organization.h"
-#include<iostream>
-#include<fstream>
+
 using namespace std;
-Organization::Organization()
-{	
+Organization::Organization(){
+
 	
 }
 
-Organization::Organization(int nOfCars, int nOfRentings)
-{
-
+/*Organization::Organization(int nOfCars, int nOfRentings) {
 	allRentingProcesses = vector<RentingProcess>(nOfRentings);
 	allCars = vector<Car>(nOfCars);
-
-
 }
+*/
 
 void Organization::readFiles()
 {
 
-	
 	ifstream readFile("Users.txt");
 	int id,totalMoney;
 	string currentCar, rentingProcessString,carString,inboxString, name, password;
@@ -29,7 +24,7 @@ void Organization::readFiles()
 	allRentingProcesses = readRentingProcesss();
 
 
-		
+	
 	while (readFile.peek() != EOF) {
 		User* user;
 		readFile >> id;
@@ -38,7 +33,7 @@ void Organization::readFiles()
 		readFile >> totalMoney;
 
 		if (id % 2 == 0) {
-			//Owner
+			//Renter
 			readFile>> currentCar;
 			readFile>> rentingProcessString;
 			vector<string>RentingProcessAsId=formatAsVectorOfString(rentingProcessString);
@@ -55,28 +50,28 @@ void Organization::readFiles()
 
 		}
 		else {
-			//Renter
+			//Owner
 			readFile >> carString;
 			readFile >> inboxString;
 			vector<string>carIdsAsVector = formatAsVectorOfString(carString);
 			vector<string>inboxAsVector = formatAsVectorOfString(inboxString);
 		
-			vector<Car>userCar;
+			vector<Car*>userCar;
 			vector<Notification>userInbox;
 
 
 			for (auto notification : allNotifications) {
-
+				//{verification 1  45 sa fhhf jk, add car 2 ,3,4,5,6}
+				
 				for (auto j : inboxAsVector) {
 					if (notification.checkId(j)) {
 						userInbox.push_back(notification);
 					}
 				}
-
 			}
 			for (int i = 0; i < carIdsAsVector.size(); i++) {
 
-				userCar.push_back(allCars[stoi(carIdsAsVector[i])]);
+				userCar.push_back(&allCars[stoi(carIdsAsVector[i])]);
 			}
 
 			
@@ -106,19 +101,19 @@ void Organization::writeFiles()
 	ofstream carsFiles("Cars.txt");
 	for (int i = 0; i < allCars.size(); i++) {
 				
-		allCars[i].getWhatTobeWrittenInFile();
+		//allCars[i].getWhatTobeWrittenInFile();
 		
 	}
 
 	for (int i = 0; i < allRentingProcesses.size(); i++) {
 
-		allRentingProcesses[i].getWhatTobeWrittenInFile();
+		//allRentingProcesses[i].getWhatTobeWrittenInFile();
 
 	}
 	
 	for (int i = 0; i < allNotifications.size(); i++) {
 
-		allNotifications[i].getWhatTobeWrittenInFile();
+		//allNotifications[i].getWhatTobeWrittenInFile();
 				
 	}
 
@@ -182,41 +177,29 @@ vector<string> Organization::formatAsVectorOfString(string s)
 	return vector<string>();
 }
 
-vector<Notification> Organization::readNotifications()
-{
+vector<Notification> Organization::readNotifications(){
+	vector <Notification> notifications;
+	ifstream file("Notifications.txt");
+	string fields[6];
+	// type - id - car  - renter  -  isVerified - date
+	if (file.is_open()) {
+		while (file >> fields[0] >> fields[1] >> fields[2] >> fields[3] >> fields[4] >> fields[5]) {
+			notifications.push_back(Notification(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5]));
+		}
+		file.close();
+	}
+	else {
+		cout << "Unable to open file" << endl;
+	}
 
-	// (2) will implement this 
-
-	return vector<Notification>();
+	return notifications;
 }
 
-vector<RentingProcess> Organization::readRentingProcesss()
-{
+vector<RentingProcess> Organization::readRentingProcesss() {
 	// (3) will implement this 
 	// don't forget you will add the Car with the same id 
 	return vector<RentingProcess>();
 }
-
-
-
-// ÈÚÏíä ÇáãÝÑæÖ äÝßÑ ÇÒÇí äÎáí ÇáÝÇäßÔä Ïí Ýí  ÇáÑíäÊÑ ÈÓ ÚÔÇä Ïå ãÔ ãßÇä ÕÍ 
-Car Organization::showAllCars()
-{
-	// display All Cars and wait response 
-
-	int n;
-	cin >> n;
-	
-	if (allCars[n].getIsRented() == false) {
-		return allCars[n];
-	}
-	else {
-		Car c1;
-		
-		return c1;
-	}
-}
-
 
 
 

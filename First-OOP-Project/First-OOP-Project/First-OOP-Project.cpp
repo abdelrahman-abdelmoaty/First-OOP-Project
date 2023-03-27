@@ -8,15 +8,15 @@ using namespace std;
 
 int main(){
     
+    //int numberOfCars, numberOfRentings;
+    //ifstream myFile("counter.txt");
+    //myFile >> numberOfCars >> numberOfRentings;
+    //myFile.close();
 
-    int numberOfCars, numberOfRentings;
-    ifstream myFile("counter.txt");
-    myFile >> numberOfCars >> numberOfRentings;
-    myFile.close();
+    //Organization org(numberOfCars,numberOfRentings);
 
-    Organization org(numberOfCars,numberOfRentings);
-    
-    org.readFiles();
+    Organization::readFiles();
+
     cout << "\t\t\t\t\t\t\tHello\n\n";
     cout << "1->sign in \n";
     cout << "2->sign up \n";
@@ -33,7 +33,7 @@ int main(){
         cin >> password;
 
         User* user;
-        user = org.authenticate(name,password);
+        user = Organization::authenticate(name,password);
 
         if (user==NULL) {
             cout << "Wrong\n";
@@ -55,11 +55,10 @@ int main(){
         cin >> response;
         response--;
         User* user;
-        user =org.signUp(name, password, response);
+        user =Organization::signUp(name, password, response);
         user->displayInfo();
     }
 
     
-    org.writeFiles();
-
+    Organization::writeFiles();
 }

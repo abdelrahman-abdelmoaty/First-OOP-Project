@@ -1,17 +1,25 @@
 #pragma once
-#include<string>
+#include <string>
+#include "Date.h"
 using namespace std;
-class Notification
-{
+class Notification {
 private:
 	string id;
-	int type;
-
+	string renter;
+	string rentedCar;
+	string type; // carVerification - newCarAdded - carRented
+	string rentingDate;
+	string isVerified;
 public:
-	bool checkId(string id2);
-	// 0 or 1
-	// (2) will care about all of the Notifications 
-
+	Notification(string _type, string _id , string _rentedCar, string _renter, string _isVerified, string _rentingDate) {
+		id = _id;
+		renter = _renter;
+		rentedCar = _rentedCar;
+		rentingDate = _rentingDate;
+		isVerified = _isVerified;
+		type = _type;
+	}
+	bool checkId(string _id);
 
 
 };

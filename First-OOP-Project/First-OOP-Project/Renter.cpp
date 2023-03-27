@@ -40,18 +40,16 @@ void Renter::displayInfo()
 		showAvailableCars();
 
 	}
-	else {
-		if (inp == 2) {
-			
-			for (auto r : rentingProcesses) {
-
-				r.displayInfo();
-			}
-			
-
+	else if (inp == 2) {		
+		for (auto r : rentingProcesses) {
+			r.displayInfo();
 		}
+	}
+	else if (inp == 3 && currentCar != "-1") {
 
-		
+		endRent();
+
+
 	}
 
 
@@ -71,38 +69,50 @@ string Renter::toBeWrittenInFile()
 
 }
 
-void Renter::showAvailableCars()
-{	
-	system("cls");
-	// that is wrong
-	Organization org;		
-			
-	Car choosenCar =org.showAllCars();
-
-
-	if (choosenCar.getModel() !="dummy") {
-		
-		
-		cout << "Are you sure you want to rent this car with id ?" << choosenCar.getID() << '\n';
-		int response;
-		cin >> response;
-		if (response == 1) {
-
-			currentCar = choosenCar.getID();
-			choosenCar.setIsRented();
-			// we should get the Date
-			// I think we should here start a renting process and make an attribute called isTheRenting still Running or not
-			// and when the renter end the rent we calculate the fees using the date 
-
-
-			return;
+void Renter::showAvailableCars() {	
+	system("cls");	
+	int i = 0;
+	int h = 0;
+	vector<int>key(Organization::allCars.size());
+	vector<Car> cars = Organization::allCars;
+	for (auto car : cars) {
+		if (!car.getIsRented()) {
+			cout << i + 1 << ". ";
+			car.displayInfo();
+			key[i] = h;
+			i++;
 		}
-		else {
-			// we will see wether we will call the function again or end 
-
-		}
-
+		h++;
 	}
+	cout << "Choose car: ";
+	int n;
+	cin >> n;
+	n--;
+	n = key[n];
+	Car car = cars[n];
+	if (currentCar != "-1") {
+		cout << "You can't access a new car while renting another, please first end your current renting proccess\n";
+		return;
+	}
+	Date date = Date::getCurrentDate();
+	car.setIsRented();
+	int sz = Organization::allRentingProcesses.size();
+	RentingProcess rentingProcess = RentingProcess(to_string(sz),car, date, true);
+	rentingProcesses.push_back(rentingProcess);
+	
+	Organization::allRentingProcesses.push_back(rentingProcess);
+
+	return;
+
+}
+
+void Renter::endRent() {
+
+	RentingProcess lastRentingProcess = rentingProcesses[rentingProcesses.size() - 1];
+	Car* car = lastRentingProcess.getCar();
+	car->setIsRented();
+
+	
 
 
 }
