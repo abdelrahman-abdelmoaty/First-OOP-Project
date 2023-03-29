@@ -15,6 +15,17 @@ Date::Date(int _minutes, int _hour, int _day, int _month, int _year){
     year = _year;
 }
 
+
+
+
+Date::Date(string _date) {
+// 5/3/2010 
+    string str = "5/3/2010";
+
+
+}
+
+
 Date Date::getCurrentDate() {
     time_t now = time(0);
     tm local_time;
