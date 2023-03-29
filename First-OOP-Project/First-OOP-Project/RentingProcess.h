@@ -15,17 +15,16 @@ private:
 	//string carRenter;
 	Car* car;
 	Date beginningDate;
-	Date endDate;
 	bool isRunning;
+	float cost;
+	float duration;
 
 public:
+	RentingProcess(string _id, Car* _car, Date _beginningDate, bool _isRunning);
 	RentingProcess();
-	RentingProcess(string _id ,Car* _car, Date _beginningDate, bool _isRunning);
-	static vector<RentingProcess> readF();
-	void displayInfo();
-	bool checkRunning(Date end);
+	RentingProcess(string _id ,string _carOwner,Car* _car, Date _beginningDate,float cost,float duration, bool _isRunning);
+	void displayInfo();	
 	Car* getCar();
-	RentingProcess(string s1, string s2, Date start, Date time);
 	string getWhatToWrite();
 
 };

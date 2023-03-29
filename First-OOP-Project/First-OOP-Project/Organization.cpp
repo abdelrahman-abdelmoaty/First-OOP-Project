@@ -1,6 +1,8 @@
 #include "Organization.h"
-
+#include "RentingProcess.h"
+#include<string>
 using namespace std;
+
 Organization::Organization(){
 
 	
@@ -196,9 +198,32 @@ vector<Notification> Organization::readNotifications(){
 }
 
 vector<RentingProcess> Organization::readRentingProcesss() {
-	// (3) will implement this 
-	// don't forget you will add the Car with the same id 
-	return vector<RentingProcess>();
+	vector<RentingProcess> rp;
+	ifstream readf("RentingProcess.txt");
+	string idd, carOwner, car, BeginningDate;
+	float  cost;
+	bool isRunning;
+	float duration;
+
+	while (readf.peek() != EOF) {
+		readf >> idd;
+		readf >> carOwner;
+		readf >> car;
+		readf >> BeginningDate;
+		readf >> cost >> isRunning >> duration;
+
+		
+		Date d(BeginningDate);
+		
+
+		RentingProcess r(idd, " re ", allCars[1], d, cost, duration, isRunning);
+	}
+
+	readf.close();
+	return rp;
+	
+	
+	
 }
 
 

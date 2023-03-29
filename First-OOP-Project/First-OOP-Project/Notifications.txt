@@ -4,9 +4,9 @@ verification 98765 DEF5678 true 2022-03-22
 newCar 67890 DEF5678 false 2022-03-22
 verification 24680 DEF5678 true 2022-03-21
 newCar 13579 ABC1234 false 2022-03-20
-rentedCar 24601 johndoe ABC1234 janedoe 2022-03-24
-rentedCar 98765 bobsmith DEF5678 charliebrown 2022-03-23
-rentedCar 13579 sarahjones GHI9012 bobsmith 2022-03-22
-rentedCar 86420 janedoe JKL3456 sarahjones 2022-03-22
-rentedCar 31415 alicejohnson MNO6789 janedoe 2022-03-21
-rentedCar 27182 charliebrown PQR1234 alicejohnson 2022-03-20
+rentedCar 24601 ABC1234 janedoe 2022-03-24
+rentedCar 98765 DEF5678 charliebrown 2022-03-23
+rentedCar 13579 GHI9012 bobsmith 2022-03-22
+rentedCar 86420 JKL3456 sarahjones 2022-03-22
+rentedCar 31415 MNO6789 janedoe 2022-03-21
+rentedCar 27182 PQR1234 alicejohnson 2022-03-20
