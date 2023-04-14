@@ -1,5 +1,5 @@
 #include <iostream>
-#include "openningUI.h"
+#include "OpeningUI.h"
 #include <string>
 #include "User.h"
 #include "Renter.h"
@@ -16,30 +16,30 @@ void openingUI() {
         if (i)
             cout << "unvalid input please try again" << endl;
         i++;
-        cout << "*******************\n";
-        cout << "**     welcome   **\n";
-        cout << "** 1 -> sign in\t **\n";
-        cout << "** 2 -> sign up\t **\n";
-        cout << "** 3 -> admin    **\n";
-        cout << "** 4 -> close    **\n";
-        cout << "*******************\n";
+        cout << "*********************\n";
+        cout << "**      WELCOME    **\n";
+        cout << "**   1. Sign in    **\n";
+        cout << "**   2. Sign up    **\n";
+        cout << "**   3. Admin      **\n";
+        cout << "**   4. Close      **\n";
+        cout << "*********************\n";
         cin >> n;
         system("cls");
         if (n == "1") {
             User* user = NULL;
             while (user == NULL) {
                 system("cls");
-                cout << "UserName: ";
+                cout << "Username: ";
                 string name, password;
                 cin >> name;
                 cout << "Password: ";
                 cin >> password;
                 user = org.authenticate(name, password);
                 if (user == NULL) {
-                    cout << "account does not exist\n";
+                    cout << "Account does not exist\n";
                     char c = '0';
-                    cout << "1->try again" << endl;
-                    cout << "2->go back" << endl;
+                    cout << "1. Try again" << endl;
+                    cout << "2. Go back" << endl;
                     cin >> c;
                     if (c == '2')
                     {
@@ -51,12 +51,12 @@ void openingUI() {
             }
         }
         else  if (n == "2") {
-            cout << "UserName: ";
+            cout << "Username: ";
             string name, password;
             cin >> name;
             cout << "Password: ";
             cin >> password;
-            cout << "Are You :\n" << "1-Renter\n" << "2-Car Owner\n";
+            cout << "Are You :\n" << "1. Renter\n" << "2. Car Owner\n";
             int response;
             cin >> response;
             User* user;
@@ -77,8 +77,8 @@ void openingUI() {
                 }
                 else {
                     char c = '0';
-                    cout << "1->try again" << endl;
-                    cout << "2->go back" << endl;
+                    cout << "1. Try again" << endl;
+                    cout << "2. Go back" << endl;
                     cin >> c;
                     if (c == '2')
                     {
@@ -88,9 +88,9 @@ void openingUI() {
             }
         }
         else if (n == "4") {
-            cout << "are you sure you want to exit\n";
-            cout << "1-> exit\n";
-            cout << "2-> continue\n";
+            cout << "Are you sure you want to exit\n";
+            cout << "1. Exit\n";
+            cout << "2. Continue\n";
             char ss;
             cin >> ss;
             if (ss == '1')

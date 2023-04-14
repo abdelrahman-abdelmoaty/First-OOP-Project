@@ -1,6 +1,6 @@
 #include "Renter.h"
 #include"Organization.h"
-#include"openningUI.h"
+#include"OpeningUI.h"
 
 
 Renter::Renter(string _id, string _userName, string _password, int _totalMoney, string _currentCar, vector<RentingProcess*> _rentingProcesses) :User(_id, _userName, _password, _totalMoney)

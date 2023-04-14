@@ -1,6 +1,6 @@
 #include "Owner.h"
 #include "Organization.h"
-#include"openningUI.h"
+#include"OpeningUI.h"
 
 Owner::Owner(string _id, string _userName, string _password, int _totalMoney, vector<Car*> _cars, vector<Notification*> _inbox)
 	:User(_id, _userName, _password, _totalMoney)

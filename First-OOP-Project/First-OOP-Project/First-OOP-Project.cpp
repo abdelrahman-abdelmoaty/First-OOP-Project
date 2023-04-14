@@ -4,7 +4,7 @@
 #include "Renter.h"
 #include "Owner.h"
 #include"Organization.h"
-#include"openningUI.h"
+#include"OpeningUI.h"
 using namespace std;
 
 
