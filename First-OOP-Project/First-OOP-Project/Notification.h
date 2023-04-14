@@ -9,17 +9,14 @@ private:
 	string rentedCar;
 	string type; // carVerification - newCarAdded - carRented
 	string rentingDate;
-	string isVerified;
+	//string isVerified;
 public:
-	Notification(string _type, string _id , string _rentedCar, string _renter, string _isVerified, string _rentingDate) {
-		id = _id;
-		renter = _renter;
-		rentedCar = _rentedCar;
-		rentingDate = _rentingDate;
-		isVerified = _isVerified;
-		type = _type;
-	}
+	string getID();
+	Notification(string _type, string _id, string _rentedCar, string _renter, string _rentingDate);
+	
 	bool checkId(string _id);
+	string getWhatToBeWrittenInFile();
+	void displayInfo();
 
 
 };

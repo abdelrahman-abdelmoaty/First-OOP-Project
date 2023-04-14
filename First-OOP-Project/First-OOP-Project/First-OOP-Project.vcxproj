@@ -127,10 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="First-OOP-Project.cpp" />
     <ClCompile Include="Notification.cpp" />
+    <ClCompile Include="openingUI.cpp" />
     <ClCompile Include="Organization.cpp" />
     <ClCompile Include="Owner.cpp" />
     <ClCompile Include="Renter.cpp" />
@@ -138,9 +140,11 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Admin.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Notification.h" />
+    <ClInclude Include="openningUI.h" />
     <ClInclude Include="Organization.h" />
     <ClInclude Include="Owner.h" />
     <ClInclude Include="Renter.h" />

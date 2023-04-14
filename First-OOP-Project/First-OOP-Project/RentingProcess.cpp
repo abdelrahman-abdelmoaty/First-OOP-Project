@@ -1,49 +1,110 @@
 #include "RentingProcess.h"
-#include <fstream>
+#include<string>
+using namespace std;
 
-RentingProcess::RentingProcess(string _id ,Car* _car, Date _beginningDate , bool _isRunning){
+
+
+RentingProcess::RentingProcess(string _id, string _carOwner, string _carRenter, Date _beginningDate,string _carid)
+{
 	id = _id;
-	car = _car;
+	carOwner = _carOwner;	
+	carRenter = _carRenter;
 	beginningDate = _beginningDate;
-	isRunning = _isRunning;
-}
-RentingProcess::RentingProcess() {
+	cost = -1;
+	duration = -1;
+	isRunning = true;
+	carID = _carid;
 
 }
-
-RentingProcess::RentingProcess(string _id, string _carOwner, Car* _car, Date _beginningDate, float _cost, float _duration, bool _isRunning)
+RentingProcess::RentingProcess(string _id, string _carOwner, string _carRenter, Date _beginningDate, float _cost, float _duration, bool _isRunning, string _carID)
 {
 
 	id = _id;
 	carOwner = _carOwner;
-	car = _car;
+	carRenter = _carRenter;
 	beginningDate = _beginningDate;
 	cost = _cost;
 	duration = _duration;
 	isRunning = _isRunning;
-
-
+	carID = _carID;
 }
-
-//RentingProcess::RentingProcess(string s1, string s2, Date start, Date time) {
-//	carOwner = s1;
-//	carRenter = s2;
-//	beginningDate = start;
-//	endDate = time;
-//	isRunning = checkRunning(endDate);
-//}
-
-
-
-Car* RentingProcess::getCar(){
-	return car;
-}
-
 void RentingProcess::displayInfo()
 {
-	cout << "Car owner:  " << carOwner << endl;
+
+	cout << "total cost" << cost<<"\n"; 
 	cout << "Beginning of the contract:  ";
 	beginningDate.displayDate();
-	cout << "\nEnding of the contract:  ";
-	//rentedCar.displayinfo();
+	
+	if (!isRunning) {
+		cout << "duration:" << duration << '\n';
+	}
+	else {
+		cout << "Still Running\n";
+	}
+	//cout << "\nEnding of the contract:  ";
+	
+}
+
+
+
+string RentingProcess::getWhatToWrite() {
+	return(id + " " + carOwner +  " " + to_string(beginningDate.day) + "/" + to_string(beginningDate.month) + "/" + to_string(beginningDate.year) + " " + to_string(cost) + " " + to_string(isRunning) + " " + to_string(duration));
+}
+
+bool RentingProcess::getIsRunning()
+{
+	return isRunning;
+}
+
+void RentingProcess::setIsRunning(bool s)
+{
+	isRunning = s;
+}
+
+string RentingProcess::getCarId()
+{
+	return carID;
+}
+
+string RentingProcess::getID()
+{
+	return id;
+	
+}
+
+string RentingProcess::getWhatToBeWrittenInFile()
+{
+	string s;
+	
+	s += id; s += " ";
+	s += carOwner; s += " ";
+	s += carRenter; s += " ";
+	s += beginningDate.getString1(); s += " ";
+	s += to_string(cost); s += " ";
+	s += to_string(duration); s += " ";
+	s += to_string(isRunning); s += " ";
+	s += carID;
+	return s;
+
+}
+
+Date RentingProcess::getBeginningDate()
+{
+	return beginningDate;
+}
+
+float RentingProcess::getDuration()
+{
+	return duration;
+}
+
+void RentingProcess::setDuration(float f)
+{
+
+	duration = f;
+}
+
+void RentingProcess::setCost(float c)
+{
+	cost = c;
 }

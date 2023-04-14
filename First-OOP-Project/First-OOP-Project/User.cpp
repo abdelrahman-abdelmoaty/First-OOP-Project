@@ -28,20 +28,25 @@ bool User::checkUsernameWithPassword(string _username, string _password)
 		
 	return false;
 }
+	
 
-
-void User::displayInfo()
+void User::displayInfo(Organization* org)
 {
 	cout << "This shouldn't be called\n";
 }
 
 int User::makeNewID(int i)
 {	
-	int h=nOfUsers+110;
-	if (h % 2 == i)
-		return h;
-	else
-		return h + 1;
+
+	int h = 0;
+	if (i == 1) {
+
+		h = nOfUsers + 100;
+	}
+	else {
+		h = nOfUsers + 300;
+	}
+	return h;
 
 }
 
@@ -59,6 +64,23 @@ string User::toBeWrittenInFile()
 	return s;
 
 
+}
+
+void User::changeMoney(float fees,Organization *org)
+{
+	totalMoney += fees;
+}
+
+void User::displayData()
+{
+	cout << "name:" << username<<'\n';
+	cout << "total money:" << totalMoney << '\n';
+
+
+}
+
+void User::displayTheUniqueHistory()
+{
 }
 
 

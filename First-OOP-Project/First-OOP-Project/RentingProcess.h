@@ -1,31 +1,37 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "Car.h"
 #include "Date.h"
+#include <fstream>	
 using namespace std;
 
-class RentingProcess
+class RentingProcess	
 {
 private:
-	// Omar Ahmed 
-	// it will contain class attribute 
 	string id;
 	string carOwner;
-	//string carRenter;
-	Car* car;
+	string carRenter;
 	Date beginningDate;
-	bool isRunning;
 	float cost;
 	float duration;
-
+	bool isRunning=1;
+	string carID;
 public:
-	RentingProcess(string _id, Car* _car, Date _beginningDate, bool _isRunning);
-	RentingProcess();
-	RentingProcess(string _id ,string _carOwner,Car* _car, Date _beginningDate,float cost,float duration, bool _isRunning);
-	void displayInfo();	
-	Car* getCar();
-	string getWhatToWrite();
 
+	RentingProcess(string _id ,string _carOwner,string _carRenter, Date _beginningDate, string _carID);
+	RentingProcess(string _id, string _carOwner, string _carRenter, Date _beginningDate, float cost, float duration, bool _isRunning,string _carID);
+
+	void displayInfo();	
+	string getWhatToWrite();
+	bool getIsRunning();
+	void setIsRunning(bool s);
+	string getCarId();
+	string getID();
+	string getWhatToBeWrittenInFile();
+	Date getBeginningDate();
+	float getDuration();
+	void setDuration(float f);
+	void setCost(float c);
+	
 };
 

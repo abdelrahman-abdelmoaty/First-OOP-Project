@@ -1,29 +1,27 @@
 #include "Organization.h"
-#include "RentingProcess.h"
-#include<string>
+
 using namespace std;
 
 Organization::Organization(){
-
+	allNotifications.reserve(100);
+	allRentingProcesses.reserve(100);
+	allCars.reserve(100);
 	
 }
 
-/*Organization::Organization(int nOfCars, int nOfRentings) {
-	allRentingProcesses = vector<RentingProcess>(nOfRentings);
-	allCars = vector<Car>(nOfCars);
-}
-*/
 
 void Organization::readFiles()
 {
 
-	ifstream readFile("Users.txt");
-	int id,totalMoney;
+	ifstream readFile("Users");
+	int id;
+	float totalMoney;
 	string currentCar, rentingProcessString,carString,inboxString, name, password;
 
-	allCars = readCars();
+	
 	allNotifications = readNotifications();
 	allRentingProcesses = readRentingProcesss();
+	allCars = readCars();
 
 
 	
@@ -34,21 +32,30 @@ void Organization::readFiles()
 		readFile >> password;
 		readFile >> totalMoney;
 
-		if (id % 2 == 0) {
+		if ((id/100) % 10 <3) {
 			//Renter
 			readFile>> currentCar;
 			readFile>> rentingProcessString;
 			vector<string>RentingProcessAsId=formatAsVectorOfString(rentingProcessString);
-			vector<RentingProcess>rp;
+			vector<RentingProcess*>rp;
 
 			for (int i = 0; i < RentingProcessAsId.size(); i++) {
 
-				rp.push_back(allRentingProcesses[i]);
+				RentingProcess  rentingProcess = allRentingProcesses[stoi(RentingProcessAsId[i])];
+				if (rentingProcess.getIsRunning()== false) {
+
+					Admin::totalMoney += ((1 - allCars[stoi(rentingProcess.getCarId())].getCommision()) * rentingProcess.getDuration());
+
+				}
+
+				rp.push_back(&allRentingProcesses[stoi(RentingProcessAsId[i])]);
+
+
 			}
 
 
 
-			user = new Renter(to_string(id),name,password,totalMoney,currentCar,rp);
+			user = new Renter( to_string(id),name,password,totalMoney,currentCar,rp);
 
 		}
 		else {
@@ -59,18 +66,33 @@ void Organization::readFiles()
 			vector<string>inboxAsVector = formatAsVectorOfString(inboxString);
 		
 			vector<Car*>userCar;
-			vector<Notification>userInbox;
+			vector<Notification*>userInbox	;
 
-
+			/*
 			for (auto notification : allNotifications) {
-				//{verification 1  45 sa fhhf jk, add car 2 ,3,4,5,6}
+				
 				
 				for (auto j : inboxAsVector) {
 					if (notification.checkId(j)) {
-						userInbox.push_back(notification);
+						userInbox.push_back(&notification);
 					}
 				}
 			}
+
+			*/
+			for (int i = 0; i < allNotifications.size(); i++) {
+
+				for (int j = 0; j < inboxAsVector.size(); j++) {
+					if (allNotifications[i].checkId(inboxAsVector[j])) {
+
+						userInbox.push_back(&allNotifications[i]);
+					}
+
+
+				}
+
+			}
+
 			for (int i = 0; i < carIdsAsVector.size(); i++) {
 
 				userCar.push_back(&allCars[stoi(carIdsAsVector[i])]);
@@ -92,39 +114,55 @@ void Organization::writeFiles()
 {
 
 	ofstream myFile;
-	myFile.open("Users.txt");
+	myFile.open("Users");
 	for (int i = 0; i < allUsers.size(); i++) {
+		if (i)
+			myFile<< '\n';
 		string s=allUsers[i]->toBeWrittenInFile();
 		myFile << s;
-		
 	}
 	myFile.close();
 
-	ofstream carsFiles("Cars.txt");
+	ofstream carsFiles;
+	carsFiles.open("Cars");
 	for (int i = 0; i < allCars.size(); i++) {
-				
-		//allCars[i].getWhatTobeWrittenInFile();
+		
+		if (i)
+			carsFiles << '\n';
+		string s = allCars[i].getWhatToBeWrittenInFile();
+		carsFiles << s;
+		
 		
 	}
+	carsFiles.close();
+
+	ofstream rentingFile;
+	rentingFile.open("RentingProcesses");
 
 	for (int i = 0; i < allRentingProcesses.size(); i++) {
-
-		//allRentingProcesses[i].getWhatTobeWrittenInFile();
+		if (i)
+			rentingFile << '\n';
+		string s=allRentingProcesses[i].getWhatToBeWrittenInFile();
+		rentingFile << s;
 
 	}
+	rentingFile.close();
+	
+	ofstream notificationsFile;
+	notificationsFile.open("Notifications");
 	
 	for (int i = 0; i < allNotifications.size(); i++) {
+		if (i)
+			notificationsFile << '\n';
 
-		//allNotifications[i].getWhatTobeWrittenInFile();
-				
+		string s= allNotifications[i].getWhatToBeWrittenInFile();
+		notificationsFile << s;
+
 	}
+	notificationsFile.close();
 
-
-	ofstream counterFile;
-	counterFile.open("counter.txt");
-	counterFile << allCars.size() << " " << allRentingProcesses.size();
-	counterFile.close();
-
+	
+	
 
 
 }
@@ -136,8 +174,89 @@ vector<Car> Organization::readCars()
 
 	// (1) will implement this car File is called 'Cars'
 
-	return vector<Car>();
+	vector<Car>v;
+	v.reserve(100);
+	ifstream readFile("Cars");
+	string id;
+	string model;
+	string carOwnerID;
+	vector<RentingProcess*>RentingProcesses; string RentingProcessesAsString; vector<string>RentingProcessAsStringVector;
+
+
+	int horsePower;
+	int torque;
+	string carType;
+	string gear;
+	int maxSpeed;
+	bool isRented;
+	int rentingPrice;
+	bool isVerified;
+	float commision;
+	float totalMoneyGotFromTheCar;
+	bool isSeenByTheAdmin;
+
+	int i = 0;
+
+
+	
+	while (readFile.peek() != EOF) {
+
+		readFile >> id;
+		readFile >> model;
+		readFile >> carOwnerID;
+		readFile >> RentingProcessesAsString;
+		
+		readFile >> horsePower;
+		readFile >> torque;
+		readFile >> carType;
+		readFile >> gear;
+		
+		readFile >> maxSpeed;
+		readFile >> isRented;
+		readFile >> rentingPrice;
+		readFile >> isVerified;
+
+		readFile >> commision;
+		readFile >> totalMoneyGotFromTheCar;
+		readFile >> isSeenByTheAdmin;
+
+		Car car;
+		car.setID(id);
+		car.setModel(model);
+		car.setCarOwnerID(carOwnerID);
+		RentingProcessAsStringVector = formatAsVectorOfString(RentingProcessesAsString);
+		for (auto i : RentingProcessAsStringVector) {
+			RentingProcesses.push_back(&allRentingProcesses[stoi(i)]);
+
+		}
+		car.setRentingProcesses(RentingProcesses);
+
+		car.setHorsePower(horsePower);
+
+		car.setTorque(torque);
+
+		car.setCarType(carType);
+		car.setGear(gear);
+		
+		
+		car.setMaxSpeed(maxSpeed);
+		car.setRentingStatus(isRented);
+		
+		car.setRentingPrice(rentingPrice);
+		
+		car.setVerification(isVerified);
+		car.setCommision(commision);
+		car.totalMoneyGotFromTheCar = totalMoneyGotFromTheCar;
+		car.isSeenByTheAdmin = isSeenByTheAdmin;
+
+		v.push_back(car);
+
+		i++;
+	}
+
+	return v;
 }
+
 
 
 
@@ -145,7 +264,7 @@ User* Organization::signUp(string _userName, string _password, int response)
 {
 	User* user;
 	int id = User::makeNewID(response);
-	
+	//1 renter 2 owner
 	if (response == 1) {
 		
 		user = new Renter( to_string(id),_userName,_password,0);
@@ -175,23 +294,39 @@ User* Organization::authenticate(string userName, string password)
 
 vector<string> Organization::formatAsVectorOfString(string s)
 {
-	// (1) will  return {1654,48,56} as vector of strings v[0]="1654" v[1]="48" v[2]="56"
-	return vector<string>();
+	string str = s.substr(1, s.length() - 2);
+	vector<string>V;
+	stringstream  ss(str);
+
+	while (ss.good()) {
+		string sub;
+		getline(ss, sub, ',');
+		V.push_back(sub);
+	}
+
+	if (V[0] == "")
+		V.clear();
+
+	return V;
 }
 
-vector<Notification> Organization::readNotifications(){
+vector<Notification> Organization::readNotifications	(){
+
 	vector <Notification> notifications;
-	ifstream file("Notifications.txt");
-	string fields[6];
+	notifications.reserve(100);
+	ifstream file("Notifications");
+	string fields[5];
 	// type - id - car  - renter  -  isVerified - date
+
 	if (file.is_open()) {
-		while (file >> fields[0] >> fields[1] >> fields[2] >> fields[3] >> fields[4] >> fields[5]) {
-			notifications.push_back(Notification(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5]));
+		while (file >> fields[0] >> fields[1] >> fields[2] >> fields[3] >> fields[4]) {
+			Notification n(fields[0], fields[1], fields[2], fields[3], fields[4]);
+			notifications.push_back(n);
 		}
 		file.close();
 	}
 	else {
-		cout << "Unable to open file" << endl;
+		//cout << "Unable to open file" << endl;
 	}
 
 	return notifications;
@@ -199,30 +334,34 @@ vector<Notification> Organization::readNotifications(){
 
 vector<RentingProcess> Organization::readRentingProcesss() {
 	vector<RentingProcess> rp;
-	ifstream readf("RentingProcess.txt");
-	string idd, carOwner, car, BeginningDate;
-	float  cost;
-	bool isRunning;
+	rp.reserve(100);
+	ifstream readf("RentingProcesses");
+	string id;
+	string carOwner;
+	string carRenter;
+	
+	string beginningDateString;
+	float cost;
 	float duration;
-
+	bool isRunning = 1;
+	string car_id;
 	while (readf.peek() != EOF) {
-		readf >> idd;
+		readf >> id;
 		readf >> carOwner;
-		readf >> car;
-		readf >> BeginningDate;
-		readf >> cost >> isRunning >> duration;
+		readf >> carRenter;
+
+		readf >> beginningDateString;
+		Date date(beginningDateString);
+		//CAR_ID
+		readf >> cost >> duration>>isRunning>>car_id;
 
 		
-		Date d(BeginningDate);
-		
-
-		RentingProcess r(idd, " re ", allCars[1], d, cost, duration, isRunning);
+		RentingProcess r(id, carOwner,carRenter, date, cost, duration, isRunning,car_id);
+		rp.push_back(r);
 	}
 
 	readf.close();
 	return rp;
-	
-	
 	
 }
 
