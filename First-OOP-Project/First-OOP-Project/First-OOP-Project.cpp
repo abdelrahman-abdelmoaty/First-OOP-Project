@@ -10,14 +10,8 @@ using namespace std;
 
 
 
-int main() {
+ int main() {
 
-    //int numberOfCars, numberOfRentings;
-    //ifstream myFile("counter.txt");
-    //myFile >> numberOfCars >> numberOfRentings;
-    //myFile.close();
-
-    //Organization org(numberOfCars,numberOfRentings);
     Organization org;
     org.readFiles();
     openingUI(&org);

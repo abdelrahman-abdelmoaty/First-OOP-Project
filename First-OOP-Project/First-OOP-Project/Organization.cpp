@@ -13,7 +13,7 @@ Organization::Organization(){
 void Organization::readFiles()
 {
 
-	ifstream readFile("Users");
+	ifstream readFile("Users.txt");
 	int id;
 	float totalMoney;
 	string currentCar, rentingProcessString,carString,inboxString, name, password;
@@ -114,7 +114,7 @@ void Organization::writeFiles()
 {
 
 	ofstream myFile;
-	myFile.open("Users");
+	myFile.open("Users.txt");
 	for (int i = 0; i < allUsers.size(); i++) {
 		if (i)
 			myFile<< '\n';
@@ -124,7 +124,7 @@ void Organization::writeFiles()
 	myFile.close();
 
 	ofstream carsFiles;
-	carsFiles.open("Cars");
+	carsFiles.open("Cars.txt");
 	for (int i = 0; i < allCars.size(); i++) {
 		
 		if (i)
@@ -137,7 +137,7 @@ void Organization::writeFiles()
 	carsFiles.close();
 
 	ofstream rentingFile;
-	rentingFile.open("RentingProcesses");
+	rentingFile.open("RentingProcesses.txt");
 
 	for (int i = 0; i < allRentingProcesses.size(); i++) {
 		if (i)
@@ -149,7 +149,7 @@ void Organization::writeFiles()
 	rentingFile.close();
 	
 	ofstream notificationsFile;
-	notificationsFile.open("Notifications");
+	notificationsFile.open("Notifications.txt");
 	
 	for (int i = 0; i < allNotifications.size(); i++) {
 		if (i)
@@ -176,7 +176,7 @@ vector<Car> Organization::readCars()
 
 	vector<Car>v;
 	v.reserve(100);
-	ifstream readFile("Cars");
+	ifstream readFile("Cars.txt");
 	string id;
 	string model;
 	string carOwnerID;
@@ -314,7 +314,7 @@ vector<Notification> Organization::readNotifications	(){
 
 	vector <Notification> notifications;
 	notifications.reserve(100);
-	ifstream file("Notifications");
+	ifstream file("Notifications.txt");
 	string fields[5];
 	// type - id - car  - renter  -  isVerified - date
 
@@ -335,7 +335,7 @@ vector<Notification> Organization::readNotifications	(){
 vector<RentingProcess> Organization::readRentingProcesss() {
 	vector<RentingProcess> rp;
 	rp.reserve(100);
-	ifstream readf("RentingProcesses");
+	ifstream readf("RentingProcesses.txt");
 	string id;
 	string carOwner;
 	string carRenter;
