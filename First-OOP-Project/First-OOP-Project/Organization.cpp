@@ -160,7 +160,7 @@ void Organization::writeFiles()
 
 	}
 	notificationsFile.close();
-
+	exit(0);
 	
 	
 

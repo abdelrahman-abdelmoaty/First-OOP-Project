@@ -68,7 +68,6 @@ void Admin::displayAllUsers(Organization* org,int flag)
 	}
 
 
-	// There will be while Here akeed ya 3am omar 
 	
 	int inp;
 	cin >> inp;
@@ -80,7 +79,7 @@ void Admin::displayAllUsers(Organization* org,int flag)
 
 }
 void Admin::showCarsToBeVerified(Organization* org)
-{
+{ 
 
 	int key[100] = { 0 };
 	int k = 1;

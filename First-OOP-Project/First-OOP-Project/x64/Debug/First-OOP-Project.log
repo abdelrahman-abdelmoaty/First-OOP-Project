@@ -1,2 +1,7 @@
-﻿  OpeningUI.cpp
-  First-OOP-Project.vcxproj -> C:\Users\Abdelr7man\Desktop\First-OOP-Project\First-OOP-Project\x64\Debug\First-OOP-Project.exe
+﻿  First-OOP-Project.cpp
+  OpeningUI.cpp
+  Organization.cpp
+D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Organization.cpp(58,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Organization.cpp(102,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  First-OOP-Project.vcxproj -> D:\afterOma\First-OOP-Project\First-OOP-Project\x64\Debug\First-OOP-Project.exe

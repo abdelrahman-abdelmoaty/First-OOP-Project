@@ -56,7 +56,7 @@ void Renter::displayInfo(Organization* org)
 			endRent(org);
 		}
 		else if (inp == "3") {
-			openingUI();
+			openingUI(org);
 		}
 	}
 }

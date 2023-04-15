@@ -6,9 +6,8 @@
 #include "Owner.h"
 #include"Organization.h"
 using namespace std;
-void openingUI() {
-    Organization org;
-    org.readFiles();
+void openingUI(Organization *org) {
+    
     string n = "0";
     int i = 0;
     while (true) {
@@ -34,7 +33,7 @@ void openingUI() {
                 cin >> name;
                 cout << "Password: ";
                 cin >> password;
-                user = org.authenticate(name, password);
+                user = org->authenticate(name, password);
                 if (user == NULL) {
                     cout << "Account does not exist\n";
                     char c = '0';
@@ -43,11 +42,11 @@ void openingUI() {
                     cin >> c;
                     if (c == '2')
                     {
-                        openingUI();
+                        openingUI(org);
                     }
                 }
                 else
-                    user->displayInfo(&org);
+                    user->displayInfo(org);
             }
         }
         else  if (n == "2") {
@@ -60,8 +59,8 @@ void openingUI() {
             int response;
             cin >> response;
             User* user;
-            user = org.signUp(name, password, response);
-            user->displayInfo(&org);
+            user = org->signUp(name, password, response);
+            user->displayInfo(org);
         }
         else if (n == "3") {
             string name, password;
@@ -72,8 +71,8 @@ void openingUI() {
                 cout << "Password: ";
                 cin >> password;
                 if (name == "admin" && password == "pass") {
-                    Admin a(&org);
-                    a.displayInfo(&org);
+                    Admin a(org);
+                    a.displayInfo(org);
                 }
                 else {
                     char c = '0';
@@ -82,7 +81,7 @@ void openingUI() {
                     cin >> c;
                     if (c == '2')
                     {
-                        openingUI();
+                        openingUI(org);
                     }
                 }
             }
@@ -96,9 +95,10 @@ void openingUI() {
             if (ss == '1')
             {
                 cout << "THANK YOU FOR USING THE APPLICATION\n";
+                org->writeFiles();
                 exit(0);
             }
         }
     }
-    org.writeFiles();
+    
 }

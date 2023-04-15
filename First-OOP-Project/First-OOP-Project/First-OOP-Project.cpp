@@ -18,7 +18,9 @@ int main() {
     //myFile.close();
 
     //Organization org(numberOfCars,numberOfRentings);
-
-    openingUI();
-
+    Organization org;
+    org.readFiles();
+    openingUI(&org);
+    
+    
 }

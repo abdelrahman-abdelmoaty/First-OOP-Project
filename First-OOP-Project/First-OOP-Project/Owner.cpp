@@ -48,7 +48,7 @@ void Owner::displayInfo(Organization* org)
 			showInbox(org);
 		}
 		else if (input == "4") {
-			openingUI();
+			openingUI(org);
 		}
 	}
 

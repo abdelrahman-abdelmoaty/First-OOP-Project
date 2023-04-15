@@ -1,2 +1,3 @@
 #pragma once
-void openingUI();
+#include "Organization.h"
+void openingUI(Organization *org);
