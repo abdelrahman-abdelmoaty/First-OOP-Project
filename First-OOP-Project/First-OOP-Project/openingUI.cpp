@@ -101,7 +101,7 @@ void openingUI(Organization *org) {
             if (ss == '1')
             {
                 cout << "THANK YOU FOR USING THE APPLICATION\n";
-                org->writeFiles();
+                // org->writeFiles();
                 exit(0);
             }
         }

@@ -176,6 +176,8 @@ void Renter::showAvailableCars(Organization* org) {
 			system("pause");
 		
 	}
+	org->writeFiles();
+
 	
 }
 
@@ -217,6 +219,8 @@ void Renter::endRent(Organization* org) {
 	changeMoney(cost, org);
 	cout << "You have rented " << currentCarsss << " for " << duration << " hours " << " and the cost is " << cost<<'\n';
 
+	org->writeFiles();
+	
 	system("pause");
 
 	return;

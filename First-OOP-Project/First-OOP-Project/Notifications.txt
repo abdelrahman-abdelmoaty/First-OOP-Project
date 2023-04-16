@@ -9,3 +9,4 @@ carRented 7 Mazda 100.000000 7/17/4/2023
 carRented 8 Mercedes 54.000000 7/17/4/2023
 newCarAdded 9 ferrari -1 7/17/4/2023
 carRented 10 ferrari 855.000000 7/17/4/2023
+carRented 11 Mercedes 0.000000 14/17/4/2023

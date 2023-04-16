@@ -305,6 +305,8 @@ void Admin::showCarsToBeVerified(Organization* org)
 		Notification n(type, to_string(org->allNotifications.size()), (carsToBeVerified[inp1]->getModel()), "-1", d.getString1());
 		org->allNotifications.push_back(n);
 		owner->changeMoney(0, org);
+		org->writeFiles();
+
 	}
 
 	string ss = "0";

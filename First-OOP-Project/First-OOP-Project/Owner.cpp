@@ -108,6 +108,7 @@ void Owner::addNewCar(Organization* org) {
 	org->allCars.push_back(c);
 	cars.push_back(&(org->allCars[org->allCars.size() - 1]));
 
+	org->writeFiles();
 
 }
 
@@ -187,6 +188,7 @@ void Owner::showMyCars(Organization* org)
 			
 		}
 	}
+
 	/*
 	string ss = "0";
 	while (ss != "1" && ss != "2") {
