@@ -31,17 +31,18 @@ RentingProcess::RentingProcess(string _id, string _carOwner, string _carRenter, 
 void RentingProcess::displayInfo()
 {
 
-	cout << "total cost" << cost<<"\n"; 
-	cout << "Beginning of the contract:  ";
+	cout << "totalCost: " << cost<<"\t\t"; 
+	cout << "Beginning of the contract: ";
 	beginningDate.displayDate();
-	
+	cout << "\n\n";
 	if (!isRunning) {
-		cout << "duration:" << duration << '\n';
+		cout << "duration:" << duration << " hour\n\n";
 	}
 	else {
-		cout << "Still Running\n";
+		cout << "StillRunning: YES\n";
 	}
-	//cout << "\nEnding of the contract:  ";
+	
+	cout << "------------------------------------------------\n";
 	
 }
 

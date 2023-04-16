@@ -7,8 +7,6 @@ Owner::Owner(string _id, string _userName, string _password, int _totalMoney, ve
 {
 	this->cars = _cars;
 	this->inbox = _inbox;
-
-
 }
 
 Owner::Owner(string _id, string _userName, string _password, int _totalMoney) :User(_id, _userName, _password, _totalMoney)
@@ -26,6 +24,7 @@ void Owner::displayInfo(Organization* org)
 		if (i)
 			cout << "unvalid input please try again" << endl;
 		i++;
+		cout << "\t\t\tHELLO " << username << '\n';
 		cout << "total money: " << totalMoney << '\n';
 		cout << "1-Add New Cars\n";
 		cout << "2-See My Cars\n";
@@ -40,12 +39,23 @@ void Owner::displayInfo(Organization* org)
 		cin >> input;
 		if (input == "1") {
 			addNewCar(org);
+			i = 0;
 		}
 		else if (input == "2") {
 			showMyCars(org);
-		}
+			i = 0;
+		}	
 		else if (input == "3") {
-			showInbox(org);
+			if (inbox.size() == 0) {
+				cout << "You don't have any Notifications\n";
+				system("pause");
+				
+
+			}
+			else {
+				showInbox(org);
+			}
+			i = 0;
 		}
 		else if (input == "4") {
 			openingUI(org);
@@ -94,10 +104,8 @@ void Owner::addNewCar(Organization* org) {
 
 
 	Car c;
-
 	c.getCarInput(org->allCars.size(), stoi(id));
 	org->allCars.push_back(c);
-
 	cars.push_back(&(org->allCars[org->allCars.size() - 1]));
 
 
@@ -105,18 +113,28 @@ void Owner::addNewCar(Organization* org) {
 
 void Owner::showMyCars(Organization* org)
 {
-	system("cls");
+	
 	int key[100] = { 0 };
 	int j = 1;
 	int i = 0;
 	for (; i < cars.size(); i++) {
 		if (cars[i]->getVerification()) {
-			cout << i << " ";
+			if(j==1)
+				system("cls");
+			cout << i+1 << " ";
 			cars[i]->displayInfo();
 			cout << '\n';
 			key[j] = i;
 			j++;
 		}
+	}
+	if (j == 1) {
+
+		cout << "You Don't have any operating Cars\n";
+		
+		system("pause");
+		displayInfo(org);
+
 	}
 
 	bool flag = false;
@@ -136,24 +154,40 @@ void Owner::showMyCars(Organization* org)
 			}
 		}
 		if (flag)
-			n = stoi(s) - 1;
+			n = stoi(s);
 		else {
-			system("cls");
+
 			cout << "unvalid input please try again" << endl;
 		}
 	}
-	if (n >= i)
+	if (n >= j||j<=0) {
 		cout << "unavailabe car id \n";
+		system("pause");
+		showMyCars(org);
+		
+	}
 	else {
 		n = key[n];
 		Car* choosen = cars[n];
-		for (int i = 0; i < choosen->getRentingProcesses().size(); i++) {
+		if (choosen->getRentingProcesses().size() == 0) {
+			cout << " This Car has no rentingProcesses\n";
+			system("pause");
+			showMyCars(org);
+		}
+		else {
+			system("cls");
+			for (int i = 0; i < choosen->getRentingProcesses().size(); i++) {
 
-			cout << i + 1 << " ";
-			choosen->getRentingProcesses()[i]->displayInfo();
-			cout << '\n';
+				cout << i + 1 << " ";
+				choosen->getRentingProcesses()[i]->displayInfo();
+				cout << '\n';
+			}
+			system("pause");
+			showMyCars(org);
+			
 		}
 	}
+	/*
 	string ss = "0";
 	while (ss != "1" && ss != "2") {
 		cout << "do you want to show another car\n";
@@ -169,18 +203,24 @@ void Owner::showMyCars(Organization* org)
 			cout << "unvlaid input please enter 1 or 2\n";
 		}
 	}
-
+	*/
 }
 
 void Owner::showInbox(Organization* org)
 {
 
+	cout << '\n';
 	for (int i = 0; i < inbox.size(); i++) {
 
+		cout << i + 1 << ": ";
 		inbox[i]->displayInfo();
 
 	}
+
 	inbox.clear();
+	
+	system("pause");
+	displayInfo(org);
 
 
 }
@@ -202,15 +242,21 @@ void Owner::displayData()
 
 void Owner::displayTheUniqueHistory()
 {
+	if (cars.size() == 0) {
 
-	for (int i = 0; i < cars.size(); i++) {
-		cout << i + 1 << ": ";
-		cars[i]->displayInfo();
-		cout << "\n";
+		cout << "This user has no cars yet\n";
 
 	}
+	else {
 
-	system("pause");
+		for (int i = 0; i < cars.size(); i++) {
+			cout << i + 1 << ": ";
+			cars[i]->displayInfo();
+			cout << "\n";
+
+		}
+	}
+	
 }
 
 

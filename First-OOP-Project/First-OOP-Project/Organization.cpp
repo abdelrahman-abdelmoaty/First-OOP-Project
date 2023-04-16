@@ -42,11 +42,7 @@ void Organization::readFiles()
 			for (int i = 0; i < RentingProcessAsId.size(); i++) {
 
 				RentingProcess  rentingProcess = allRentingProcesses[stoi(RentingProcessAsId[i])];
-				if (rentingProcess.getIsRunning()== false) {
-
-					Admin::totalMoney += ((1 - allCars[stoi(rentingProcess.getCarId())].getCommision()) * rentingProcess.getDuration());
-
-				}
+				
 
 				rp.push_back(&allRentingProcesses[stoi(RentingProcessAsId[i])]);
 
@@ -200,7 +196,7 @@ vector<Car> Organization::readCars()
 
 	
 	while (readFile.peek() != EOF) {
-
+		RentingProcesses.clear();
 		readFile >> id;
 		readFile >> model;
 		readFile >> carOwnerID;
@@ -247,6 +243,7 @@ vector<Car> Organization::readCars()
 		car.setVerification(isVerified);
 		car.setCommision(commision);
 		car.totalMoneyGotFromTheCar = totalMoneyGotFromTheCar;
+		Admin::totalMoney += (car.totalMoneyGotFromTheCar * (1-commision));
 		car.isSeenByTheAdmin = isSeenByTheAdmin;
 
 		v.push_back(car);

@@ -50,17 +50,23 @@ void openingUI(Organization *org) {
             }
         }
         else  if (n == "2") {
-            cout << "Username: ";
+            cout << "UserName: ";
             string name, password;
             cin >> name;
             cout << "Password: ";
             cin >> password;
-            cout << "Are You :\n" << "1. Renter\n" << "2. Car Owner\n";
-            int response;
-            cin >> response;
-            User* user;
-            user = org->signUp(name, password, response);
-            user->displayInfo(org);
+            while (true) {
+                cout << "Are You :\n" << "1-Renter\n" << "2-Car Owner\n";
+                string response;
+                cin >> response;
+                if (response == "1" || response == "2") {
+                    int r = stoi(response);
+                    User* user;
+                    user = org->signUp(name, password, r);
+                    user->displayInfo(org);
+                }
+                else cout << "Unvalid input\n";
+            }
         }
         else if (n == "3") {
             string name, password;

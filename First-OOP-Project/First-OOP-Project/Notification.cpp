@@ -41,7 +41,7 @@ string Notification::getWhatToBeWrittenInFile()
 void Notification::displayInfo()
 {
 
-	string s;
+	
 	if (type == "carVerification") {
 
 		cout <<rentingDate <<" Sorry but your car (" << rentedCar << ") has been refused by admin";
@@ -55,10 +55,9 @@ void Notification::displayInfo()
 
 	if (type == "carRented") {
 
-		cout << rentingDate << "your car (" << rentedCar << ") has been rented and you got" << renter << " pound";
+		cout << rentingDate << " your car (" << rentedCar << ") has been rented and you got" << renter << " pound";
 	}
 
-	cout << s<<'\n';
-
+	cout << '\n';
 }
 

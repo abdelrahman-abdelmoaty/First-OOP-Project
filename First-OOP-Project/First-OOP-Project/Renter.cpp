@@ -26,14 +26,15 @@ void Renter::displayInfo(Organization* org)
 	// logic of Renter
 	int i = 0;
 	while (true) {
-		system("cls");
+		
 		if (i)
 			cout << "unvalid input please try again" << endl;
 		i++;
+		system("cls");
 		cout << "\t\t\t\t\t Hello " << username << "\n\n";
-		cout << "total Money Paid:" << "\n\n";
+		cout << "total Money Paid: "<<totalMoney << "\n\n";
 		if (currentCar != "-1") {
-			cout << " current car :" << currentCar << '\n';
+			cout << "current car :" << currentCar << '\n';
 		}
 		cout << "1-See available cars\n";
 		cout << "2-View my history\n";
@@ -44,19 +45,41 @@ void Renter::displayInfo(Organization* org)
 
 		string inp = "0";
 		cin >> inp;
+		
 		if (inp == "1") {
+			i = 0;
+			if (currentCar != "-1") {	
+				
+				cout << "Sorry but you have to end the rent before you start a new rent\n";
+				system("pause");
+				continue;
+			}
 			showAvailableCars(org);
+			
 		}
 		else if (inp == "2") {
-			for (auto r : rentingProcesses) {
-				r->displayInfo();
+			if(rentingProcesses.size()==0){
+			
+				cout << "\n you don't have any rentingProcesses yet\n";
+
 			}
+			else {
+				for (auto r : rentingProcesses) {
+					r->displayInfo();
+				}
+			}
+			system("pause");
+			i = 0;
 		}
 		else if (inp == "4" && currentCar != "-1") {
+
+
 			endRent(org);
+			i = 0;
 		}
 		else if (inp == "3") {
 			openingUI(org);
+			i = 0;
 		}
 	}
 }
@@ -86,20 +109,29 @@ string Renter::toBeWrittenInFile()
 
 void Renter::showAvailableCars(Organization* org) {
 	system("cls");
-	int i = 0;
+	cout << "To rent a car write its index\n";
+	int i = 1;
 	int h = 0;
 	vector<int>key(org->allCars.size());
 
 	vector<Car> cars = org->allCars;
 	for (auto car : cars) {
 		if (!car.getIsRented() && car.getVerification()) {
-			cout << i + 1 << ". ";
+			cout << i << ": ";
 			car.displayInfo();
 			key[i] = h;
 			i++;
 		}
 		h++;
 	}
+	if (i == 1) {
+
+		cout << "sorry but there are no available cars now\n";
+		system("pause");
+		displayInfo(org);
+		
+	}
+
 	bool flag = false;
 	string s = "0";
 	int n = 0;
@@ -117,21 +149,20 @@ void Renter::showAvailableCars(Organization* org) {
 			}
 		}
 		if (flag)
-			n = stoi(s) - 1;
+			n = stoi(s);
 		else {
-			system("cls");
 			cout << "unvalid input please try again" << endl;
 		}
 	}
-	if (n >= i)
+	if (n >= i||n<=0) {
 		cout << "unavailabe car id \n";
+		system("pause");
+		showAvailableCars(org);
+	}
 	else {
 		n = key[n];
 		Car car = org->allCars[n];
-		if (currentCar != "-1") {
-			cout << "You can't access a new car while renting another, please first end your current renting proccess\n";
-		}
-		else {
+		
 			org->allCars[n].setIsRented();
 			Date date = Date::getCurrentDate();
 			int sz = org->allRentingProcesses.size();
@@ -141,23 +172,11 @@ void Renter::showAvailableCars(Organization* org) {
 			org->allRentingProcesses.push_back(rentingProcess);
 			rentingProcesses.push_back(&(org->allRentingProcesses[(org->allRentingProcesses.size() - 1)]));
 			org->allCars[n].pushToRentingProcesses(&(org->allRentingProcesses[(org->allRentingProcesses.size() - 1)]));
-		}
+			cout << "\n\n\nYou started renting a " << car.getModel() << " at " << date.getString1() << "\n\n";
+			system("pause");
+		
 	}
-	string ss = "0";
-	while (ss != "1" && ss != "2") {
-		cout << "do you want to show another car\n";
-		cout << "1- yes\n";
-		cout << "2- no\n";
-		cin >> ss;
-		if (ss == "1")
-			showAvailableCars(org);
-		else if (ss == "2")
-			displayInfo(org);
-		else {
-			system("cls");
-			cout << "unvlaid input please enter 1 or 2\n";
-		}
-	}
+	
 }
 
 void Renter::endRent(Organization* org) {
@@ -166,7 +185,7 @@ void Renter::endRent(Organization* org) {
 	RentingProcess* lastRentingProcess = rentingProcesses[rentingProcesses.size() - 1];
 
 	Car car = org->allCars[stoi(lastRentingProcess->getCarId())];
-
+	string currentCarsss = currentCar;
 	currentCar = "-1";
 	org->allCars[stoi(lastRentingProcess->getCarId())].setIsRented();
 
@@ -189,16 +208,19 @@ void Renter::endRent(Organization* org) {
 	rentingProcesses[rentingProcesses.size() - 1]->setDuration(duration);
 	Notification notification("carRented", to_string(org->allNotifications.size()), car.getModel(), to_string(cost * car.getCommision()), Date::getCurrentDate().getString1());
 
-	//org->allUsers[stoi(CarOwnerID)]
+	
 	org->allNotifications.push_back(notification);
 
 
 	rentingProcesses[rentingProcesses.size() - 1]->setIsRunning(0);
 	carOwner->changeMoney(cost * car.getCommision(), org);
 	changeMoney(cost, org);
-	return;
-	// Admin
+	cout << "You have rented " << currentCarsss << " for " << duration << " hours " << " and the cost is " << cost<<'\n';
 
+	system("pause");
+
+	return;
+	
 
 
 }
@@ -217,13 +239,18 @@ void Renter::displayData()
 void Renter::displayTheUniqueHistory()
 {
 
-	for (int i = 0; i < rentingProcesses.size(); i++) {
-
-		cout << i + 1 << ":";
-		rentingProcesses[i]->displayInfo();
-		cout << '\n';
+	if (rentingProcesses.size() == 0) {
+		cout << "this Renter has no history\n";
 
 	}
-	system("pause");
+	else {
+		for (int i = 0; i < rentingProcesses.size(); i++) {
 
+			cout << i + 1 << ":";
+			rentingProcesses[i]->displayInfo();
+			cout << '\n';
+
+		}
+	}
+	
 }
