@@ -270,7 +270,7 @@ void Car::getCarInput(int _id, int _carOwnerID)
 	float x = 0;
 	float y = 0.1;
 	while (!flag) {
-		cout << "Commision: ";
+		cout << "Commision rate(decimalNumber from 0 to 1 ): ";
 		cin >> s;
 		flag = true;
 		for (int i = 0; i < s.size(); i++) {
@@ -285,7 +285,7 @@ void Car::getCarInput(int _id, int _carOwnerID)
 			}
 			if (!(s[i] >= '0' && s[i] <= '9'))
 			{
-				cout << "Unvalid input, please enter an Integer\n";
+				cout << "Unvalid input, please enter a number from 0 to 1 \n";
 				flag = false;
 				break;
 			}

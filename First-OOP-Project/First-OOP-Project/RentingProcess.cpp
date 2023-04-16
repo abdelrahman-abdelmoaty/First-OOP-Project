@@ -28,7 +28,7 @@ RentingProcess::RentingProcess(string _id, string _carOwner, string _carRenter, 
 	isRunning = _isRunning;
 	carID = _carID;
 }
-void RentingProcess::displayInfo()
+void RentingProcess::displayInfo(string s)
 {
 
 	cout << "totalCost: " << cost<<"\t\t"; 
@@ -39,7 +39,11 @@ void RentingProcess::displayInfo()
 		cout << "duration:" << duration << " hour\n\n";
 	}
 	else {
-		cout << "StillRunning: YES\n";
+		cout << "StillRunning: YES\t\t";
+		
+	}
+	if (s != " ") {
+		cout << "CarModel: " << s << '\n';
 	}
 	
 	cout << "------------------------------------------------\n";

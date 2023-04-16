@@ -1,11 +1,4 @@
-﻿  Admin.cpp
-  OpeningUI.cpp
-  Owner.cpp
-C:\Users\Abdelr7man\Desktop\First-OOP-Project\First-OOP-Project\First-OOP-Project\Owner.cpp(107,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Renter.cpp
-C:\Users\Abdelr7man\Desktop\First-OOP-Project\First-OOP-Project\First-OOP-Project\Renter.cpp(168,44): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
-C:\Users\Abdelr7man\Desktop\First-OOP-Project\First-OOP-Project\First-OOP-Project\Owner.cpp(209): warning C4717: 'Owner::showMyCars': recursive on all control paths, function will cause runtime stack overflow
-C:\Users\Abdelr7man\Desktop\First-OOP-Project\First-OOP-Project\First-OOP-Project\Admin.cpp(207): warning C4717: 'Admin::displayAllUsers': recursive on all control paths, function will cause runtime stack overflow
-C:\Users\Abdelr7man\Desktop\First-OOP-Project\First-OOP-Project\First-OOP-Project\Admin.cpp(110): warning C4717: 'Admin::displayAllCars': recursive on all control paths, function will cause runtime stack overflow
-  First-OOP-Project.vcxproj -> C:\Users\Abdelr7man\Desktop\First-OOP-Project\First-OOP-Project\x64\Debug\First-OOP-Project.exe
+﻿  Car.cpp
+D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Car.cpp(271,15): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Car.cpp(281,15): warning C4305: '*=': truncation from 'double' to 'float'
+  First-OOP-Project.vcxproj -> D:\afterOma\First-OOP-Project\First-OOP-Project\x64\Debug\First-OOP-Project.exe

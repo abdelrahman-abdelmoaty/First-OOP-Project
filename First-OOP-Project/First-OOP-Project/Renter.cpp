@@ -65,7 +65,7 @@ void Renter::displayInfo(Organization* org)
 			}
 			else {
 				for (auto r : rentingProcesses) {
-					r->displayInfo();
+					r->displayInfo(org->allCars[stoi(r->getCarId())].getModel());
 				}
 			}
 			system("pause");
@@ -136,7 +136,7 @@ void Renter::showAvailableCars(Organization* org) {
 	string s = "0";
 	int n = 0;
 	while (!flag) {
-		cout << "Choose car no to show or enter \"a\" to go back : ";
+		cout << "Choose car no to show it history or enter \"a\" to go back : ";
 		cin >> s;
 		if (s == "a")
 			displayInfo(org);
@@ -251,7 +251,7 @@ void Renter::displayTheUniqueHistory()
 		for (int i = 0; i < rentingProcesses.size(); i++) {
 
 			cout << i + 1 << ":";
-			rentingProcesses[i]->displayInfo();
+			rentingProcesses[i]->displayInfo(" ");
 			cout << '\n';
 
 		}

@@ -142,7 +142,7 @@ void Owner::showMyCars(Organization* org)
 	string s = "0";
 	int n = 0;
 	while (!flag) {
-		cout << "Choose car no to show or enter \"a\" to go back : ";
+		cout << "Choose car no to show its history  or enter \"a\" to go back : ";
 		cin >> s;
 		if (s == "a")
 			displayInfo(org);
@@ -180,7 +180,7 @@ void Owner::showMyCars(Organization* org)
 			for (int i = 0; i < choosen->getRentingProcesses().size(); i++) {
 
 				cout << i + 1 << " ";
-				choosen->getRentingProcesses()[i]->displayInfo();
+				choosen->getRentingProcesses()[i]->displayInfo(choosen->getModel());
 				cout << '\n';
 			}
 			system("pause");

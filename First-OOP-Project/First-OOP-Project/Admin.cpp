@@ -39,7 +39,7 @@ void Admin::displayAllCars(Organization* org)
 	string s = "0";
 	int n = 1;
 	while (!ff) {
-		cout << "Choose car index to show or enter \"a\" to go back : ";
+		cout << "Choose car index to show car history or enter \"a\" to go back : ";
 		cin >> s;
 		if (s == "a")
 			displayInfo(org);
@@ -79,7 +79,7 @@ void Admin::displayAllCars(Organization* org)
 			for (int i = 0; i < choosenCar.getRentingProcesses().size(); i++) {
 
 				cout << counter << ":";
-				choosenCar.getRentingProcesses()[i]->displayInfo();
+				choosenCar.getRentingProcesses()[i]->displayInfo(choosenCar.getModel());
 			}
 		}
 		else {
@@ -226,7 +226,7 @@ void Admin::showCarsToBeVerified(Organization* org)
 	}
 	if (k == 1) {
 
-		cout << "No Cars to be verified \nPress any key to continue \n";
+		cout << "No Cars to be verified \n\n";
 		system("pause");
 		
 
@@ -279,7 +279,7 @@ void Admin::showCarsToBeVerified(Organization* org)
 		// we should add notification for the user
 		while (inp2 != "1" && inp2 != "2") {
 			
-			cout << "Do you want to accept it?\n";
+			cout << "Do you want to verify it?\n";
 			
 			cout << "1- yes\n";
 			cout << "2- no\n";
@@ -288,11 +288,15 @@ void Admin::showCarsToBeVerified(Organization* org)
 				carsToBeVerified[inp1]->isSeenByTheAdmin = true;
 				carsToBeVerified[inp1]->setVerification(true);
 				type = "newCarAdded";
+				cout << "You verified this car\n";
+				system("pause");
 			}
 			else if (inp2 == "2") {
 				type = "carVerification";
 				carsToBeVerified[inp1]->isSeenByTheAdmin = true;
 				carsToBeVerified[inp1]->setVerification(false);
+				cout << "You refused this car\n";
+				system("pause");
 			}
 			else {
 				
@@ -309,6 +313,7 @@ void Admin::showCarsToBeVerified(Organization* org)
 
 	}
 
+	/*
 	string ss = "0";
 	while (ss != "1" && ss != "2") {
 		cout << "do you want to verify another car\n";
@@ -325,6 +330,7 @@ void Admin::showCarsToBeVerified(Organization* org)
 		}
 	}
 
+	*/
 
 }
 

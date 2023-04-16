@@ -21,7 +21,7 @@ public:
 	RentingProcess(string _id ,string _carOwner,string _carRenter, Date _beginningDate, string _carID);
 	RentingProcess(string _id, string _carOwner, string _carRenter, Date _beginningDate, float cost, float duration, bool _isRunning,string _carID);
 
-	void displayInfo();	
+	void displayInfo(string s);	
 	string getWhatToWrite();
 	bool getIsRunning();
 	void setIsRunning(bool s);

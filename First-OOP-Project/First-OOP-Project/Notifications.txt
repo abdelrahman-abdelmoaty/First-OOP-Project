@@ -10,3 +10,9 @@ carRented 8 Mercedes 54.000000 7/17/4/2023
 newCarAdded 9 ferrari -1 7/17/4/2023
 carRented 10 ferrari 855.000000 7/17/4/2023
 carRented 11 Mercedes 0.000000 14/17/4/2023
+carRented 12 Garar 0.000000 23/17/4/2023
+carRented 13 Mazda 200.000000 23/17/4/2023
+newCarAdded 14 lanos -1 23/17/4/2023
+carVerification 15 verna -1 23/17/4/2023
+newCarAdded 16 KamalCar -1 0/18/4/2023
+carVerification 17 mahmoudCar -1 0/18/4/2023
