@@ -23,7 +23,7 @@ Renter::Renter(string _id, string _userName, string _password, int _totalMoney) 
 
 void Renter::displayInfo(Organization* org)
 {
-	// logic of Renter
+	// we are displaying the UI of the Renter 
 	int i = 0;
 	while (true) {
 		
@@ -87,6 +87,7 @@ void Renter::displayInfo(Organization* org)
 string Renter::toBeWrittenInFile()
 {
 
+	// we are preparing the string that will be written in the file
 	string s = User::toBeWrittenInFile();
 	s += currentCar;
 	s += " ";
@@ -108,6 +109,13 @@ string Renter::toBeWrittenInFile()
 }
 
 void Renter::showAvailableCars(Organization* org) {
+
+
+	/* we are showing available cars to be rented by the owner under 2 conditions
+	1-these cars shouldn't be rented 
+	2- these cars should be verified by the admin
+	*/
+
 	system("cls");
 	cout << "To rent a car write its index\n";
 	int i = 1;
@@ -184,6 +192,9 @@ void Renter::showAvailableCars(Organization* org) {
 void Renter::endRent(Organization* org) {
 
 
+	/*
+	the user is ending his rent and money is added for both admin and owner with commision Rate 
+	*/
 	RentingProcess* lastRentingProcess = rentingProcesses[rentingProcesses.size() - 1];
 
 	Car car = org->allCars[stoi(lastRentingProcess->getCarId())];

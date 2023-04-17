@@ -18,6 +18,7 @@ Owner::Owner(string _id, string _userName, string _password, int _totalMoney) :U
 
 void Owner::displayInfo(Organization* org)
 {
+	// we are displaying  the openning UI of the Owner
 	int i = 0;
 	while (true) {
 		system("cls");
@@ -67,9 +68,10 @@ void Owner::displayInfo(Organization* org)
 string Owner::toBeWrittenInFile()
 {
 	string s = User::toBeWrittenInFile();
-	///
-	/// this will be discussed later
-	/// 
+
+	/// we are preparing the string that will be written for the owner
+
+
 	s += "{";
 
 	for (int i = 0; i < cars.size(); i++) {
@@ -102,6 +104,7 @@ void Owner::addNewCar(Organization* org) {
 
 	system("cls");
 
+	// adding NewCar to be verified by the Admin
 
 	Car c;
 	c.getCarInput(org->allCars.size(), stoi(id));
@@ -115,6 +118,7 @@ void Owner::addNewCar(Organization* org) {
 void Owner::showMyCars(Organization* org)
 {
 	
+	// show the only operting(verifiedCars) of the owner and onClick on an ID we show the rentingProcesses of the Car
 	int key[100] = { 0 };
 	int j = 1;
 	int i = 0;
@@ -211,6 +215,7 @@ void Owner::showMyCars(Organization* org)
 void Owner::showInbox(Organization* org)
 {
 
+	// we are displaying the inbox of the owenr and make it empty after it like normal notifications in any app
 	cout << '\n';
 	for (int i = 0; i < inbox.size(); i++) {
 
@@ -244,6 +249,8 @@ void Owner::displayData()
 
 void Owner::displayTheUniqueHistory()
 {
+
+	// we are display the Cars of the Owner 
 	if (cars.size() == 0) {
 
 		cout << "This user has no cars yet\n";

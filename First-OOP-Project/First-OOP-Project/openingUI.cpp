@@ -8,6 +8,15 @@
 using namespace std;
 void openingUI(Organization *org) {
     
+    /*
+    the openning of the program  you can
+    1- sign in 
+    2- sign up 
+    3- admin 
+    4- go back and exit
+
+    */
+    // 
     string n = "0";
     int i = 0;
     while (true) {
@@ -50,6 +59,10 @@ void openingUI(Organization *org) {
             }
         }
         else  if (n == "2") {
+
+            /*
+            we are applying the concept of Polymorphism here  User points to a renter or owner
+            */
             cout << "UserName: ";
             string name, password;
             cin >> name;

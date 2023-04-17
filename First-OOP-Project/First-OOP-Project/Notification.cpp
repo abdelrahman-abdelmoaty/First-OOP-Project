@@ -23,6 +23,7 @@ bool Notification::checkId(string _id){
 
 string Notification::getWhatToBeWrittenInFile()
 {
+	// we are preparing the string that will be written to The Nofications File
 	string s;
 	s += type;
 	s += " ";
@@ -40,8 +41,12 @@ string Notification::getWhatToBeWrittenInFile()
 
 void Notification::displayInfo()
 {
-
-	
+	/*
+	we have 3 types of notifications 
+	1- you car is verified
+	2- you car is refused
+	3- your car has been rented 
+	*/
 	if (type == "carVerification") {
 
 		cout <<rentingDate <<" Sorry but your car (" << rentedCar << ") has been refused by admin";

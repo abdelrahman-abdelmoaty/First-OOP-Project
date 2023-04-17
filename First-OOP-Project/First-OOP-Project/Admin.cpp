@@ -2,12 +2,13 @@
 #include "Organization.h"
 #include<vector>
 #include "openingUI.h"
-using namespace std;
 #include <iostream>
+using namespace std;
 
 float Admin::totalMoney = 0;
 void Admin::displayAllCars(Organization* org)
 {
+	// we are trying to displaying all Verified Cars and getting the history of each car onClick
 
 	int counter = 1;
 	vector<int>key(org->allCars.size() + 1);
@@ -89,30 +90,14 @@ void Admin::displayAllCars(Organization* org)
 		system("pause");
 		displayAllCars(org);
 	}
-	/*
-	string ss = "0";
-	while (ss != "1" && ss != "2") {
-		cout << "do you want to show another car\n";
-		cout << "1- yes\n";
-		cout << "2- no\n";
-		cin >> ss;
-		if (ss == "1")
-			displayAllCars(org);
-		else if (ss == "2")
-			displayInfo(org);
-		else {
-			system("cls");
-			cout << "unvlaid input please enter 1 or 2\n";
-		}
-	}
-	*/
 
 }
 void Admin::displayAllUsers(Organization* org, int flag)
 {
+	// we are displaying allUsers  and onClick on a specific ID we show History for Renter and Cars for Owners
 	// flag=3 renters 
-	// flag==4 owners
-	//
+	// flag=4 owners
+
 	int counter = 1;
 	int i2 = 0;
 	vector<int>key(org->allUsers.size() + 1);
@@ -131,6 +116,7 @@ void Admin::displayAllUsers(Organization* org, int flag)
 
 	}
 
+	
 	if (counter == 1) {
 		string s;
 		if (flag == 3) {
@@ -148,7 +134,13 @@ void Admin::displayAllUsers(Organization* org, int flag)
 	string s = "0";
 	int n = 1;
 	while (!ff) {
-		cout << "Choose user ID to show or enter \"a\" to go back : ";
+		if (flag == 3) {
+			cout << "Choose Renter ID to show history or enter \"a\" to go back : ";
+		}
+		else {
+			cout << "Choose Owner ID to show his cars or enter \"a\" to go back : ";
+
+		}
 		cin >> s;
 		if (s == "a")
 			displayInfo(org);
@@ -187,32 +179,15 @@ void Admin::displayAllUsers(Organization* org, int flag)
 		displayAllUsers(org, flag);
 
 	}
-	/*
-	string ss = "0";
-	while (ss != "1" && ss != "2") {
-		cout << "do you want to show another user\n";
-		cout << "1- yes\n";
-		cout << "2- no\n";
-		cin >> ss;
-		if (ss == "1")
-			displayAllUsers(org, flag);
-		else if (ss == "2")
-			displayInfo(org);
-		else {
-			system("cls");
-			cout << "unvlaid input please enter 1 or 2\n";
-		}
-	}
-	*/
 }
 
 void Admin::showCarsToBeVerified(Organization* org)
 {
-
+	// we are showing cars to be verified and the admin has the right to weather  verify it or refuse it 
 	int key[100] = { 0 };
 	int k = 1;
 
-	///
+	
 	for (int i = 0; i < carsToBeVerified.size(); i++) {
 
 		if (!carsToBeVerified[i]->isSeenByTheAdmin) {
@@ -232,17 +207,6 @@ void Admin::showCarsToBeVerified(Organization* org)
 
 		displayInfo(org);
 	}
-
-	// 1- car1
-	// 2- car2
-	// 3-
-
-	// 1
-	// 2
-	// 3
-	// 4
-	//////
-	/////
 
 	bool flag = false;
 	string s = "0";
@@ -276,7 +240,7 @@ void Admin::showCarsToBeVerified(Organization* org)
 		string type;
 		string inp2 = "0";
 		
-		// we should add notification for the user
+		
 		while (inp2 != "1" && inp2 != "2") {
 			
 			cout << "Do you want to verify it?\n";
@@ -313,24 +277,6 @@ void Admin::showCarsToBeVerified(Organization* org)
 
 	}
 
-	/*
-	string ss = "0";
-	while (ss != "1" && ss != "2") {
-		cout << "do you want to verify another car\n";
-		cout << "1- yes\n";
-		cout << "2- no\n";
-		cin >> ss;
-		if (ss == "1")
-			showCarsToBeVerified(org);
-		else if (ss == "2")
-			displayInfo(org);
-		else {
-			system("cls");
-			cout << "unvlaid input please enter 1 or 2\n";
-		}
-	}
-
-	*/
 
 }
 
@@ -338,6 +284,8 @@ void Admin::showCarsToBeVerified(Organization* org)
 
 void Admin::displayInfo(Organization* org)
 {
+
+	// the opening UI for the Admin
 	int i = 0;
 	while (true) {
 		system("cls");
@@ -380,7 +328,7 @@ void Admin::displayInfo(Organization* org)
 
 Admin::Admin(Organization* org)
 {
-
+	//Constructor of the Admin we read cars that should be reviewed  by admin 
 	for (int i = 0; i < org->allCars.size(); i++) {
 		if (!(org->allCars[i].isSeenByTheAdmin)) {
 

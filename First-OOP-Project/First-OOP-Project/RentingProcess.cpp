@@ -30,7 +30,7 @@ RentingProcess::RentingProcess(string _id, string _carOwner, string _carRenter, 
 }
 void RentingProcess::displayInfo(string s)
 {
-
+	// we are display the information of a specific rentingProcess
 	cout << "totalCost: " << cost<<"\t\t"; 
 	cout << "Beginning of the contract: ";
 	beginningDate.displayDate();
@@ -53,6 +53,7 @@ void RentingProcess::displayInfo(string s)
 
 
 string RentingProcess::getWhatToWrite() {
+	// we are preparing the string that will be written in the File 
 	return(id + " " + carOwner +  " " + to_string(beginningDate.day) + "/" + to_string(beginningDate.month) + "/" + to_string(beginningDate.year) + " " + to_string(cost) + " " + to_string(isRunning) + " " + to_string(duration));
 }
 
@@ -79,6 +80,7 @@ string RentingProcess::getID()
 
 string RentingProcess::getWhatToBeWrittenInFile()
 {
+	// we are preparing the string that will be written in the File 
 	string s;
 	
 	s += id; s += " ";

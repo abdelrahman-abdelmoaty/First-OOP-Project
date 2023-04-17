@@ -18,7 +18,8 @@ Date::Date(int _minutes, int _hour, int _day, int _month, int _year){
 
 
 Date::Date(string _date) {
-// 5/3/2010 
+    
+    // we are making Date Instance from the String 
     string str = _date;
     int arr[4];
     string arr1[4];
@@ -43,6 +44,7 @@ Date::Date(string _date) {
 
 string Date::getString1()
 {
+    // we are converting a Date to String to be printed
     string str;
     str = to_string(hour) + '/' + to_string(day) + '/' + to_string(month) + '/' + to_string(year);
     return str;
@@ -50,6 +52,7 @@ string Date::getString1()
 
 float Date::getDuration(Date _beginningDate)
 {   
+    // we are trying to get number of hourse between the given date and current date
     float duration = 0;
     Date current = Date::getCurrentDate();
     int year = current.year;

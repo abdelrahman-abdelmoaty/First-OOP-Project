@@ -29,6 +29,8 @@ bool Car::getIsRented() {
 }
 void Car::displayInfo()
 {
+
+	// displaying Car specs
 	string isRenteds = isRented ? "YES" : "NO";
 	string isVerifieds = isVerified ? "YES" : "NO";
 	cout << "model: " << model << "\t\tRentingPrice: " << rentingPrice << " EGP\n\n" << "HorsePower: " << horsePower << " HP\t\t" << "toruq: " << torque << " N-m\n\n";
@@ -101,6 +103,8 @@ vector<RentingProcess*> Car::getRentingProcesses()
 
 string Car::getWhatToBeWrittenInFile()
 {
+
+	// here we preparing the string that will be written in cars file
 	string s;
 	s += ID; s += " ";
 	s += model; s += " ";
@@ -191,6 +195,8 @@ void Car::setCommision(float c)
 
 void Car::getCarInput(int _id, int _carOwnerID)
 {
+
+	//here we are taking the input and the data of the car 
 	string s;
 	bool flag = false;
 	this->ID = to_string(_id);

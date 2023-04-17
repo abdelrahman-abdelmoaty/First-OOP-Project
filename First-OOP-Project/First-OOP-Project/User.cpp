@@ -32,6 +32,8 @@ bool User::checkUsernameWithPassword(string _username, string _password)
 
 void User::displayInfo(Organization* org)
 {
+	// a virtual Function that displays the openning UI of owner or renter 
+	
 	cout << "This shouldn't be called\n";
 }
 
@@ -52,6 +54,7 @@ int User::makeNewID(int i)
 
 string User::toBeWrittenInFile()
 {
+	// virtual function that get what to be writteb in file
 	string s;
 	s += this->id;
 	s += " ";
@@ -81,6 +84,9 @@ void User::displayData()
 
 void User::displayTheUniqueHistory()
 {
+	// virtual function
+	cout << "This shouldn't be called\n";
+
 }
 
 

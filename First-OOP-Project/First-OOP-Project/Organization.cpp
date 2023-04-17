@@ -13,6 +13,13 @@ Organization::Organization(){
 void Organization::readFiles()
 {
 
+
+
+	/*
+	
+	We are reading all users and adding their specific attributes depending on wether the user is Renter or Owner
+
+	*/
 	ifstream readFile("Users.txt");
 	int id;
 	float totalMoney;
@@ -108,7 +115,7 @@ void Organization::readFiles()
 
 void Organization::writeFiles()
 {
-
+	// we are writing to the files 
 	ofstream myFile;
 	myFile.open("Users.txt");
 	for (int i = 0; i < allUsers.size(); i++) {
@@ -167,7 +174,7 @@ void Organization::writeFiles()
 vector<Car> Organization::readCars()
 {
 
-	// (1) will implement this car File is called 'Cars'
+	//we are readingCars from cars.txt
 
 	vector<Car>v;
 	v.reserve(100);
@@ -258,6 +265,8 @@ vector<Car> Organization::readCars()
 
 User* Organization::signUp(string _userName, string _password, int response)
 {
+
+	// we are creating a new ID and returning instance of user type to apply the polymorphism concept
 	User* user;
 	int id = User::makeNewID(response);
 	//1 renter 2 owner
@@ -277,6 +286,7 @@ User* Organization::signUp(string _userName, string _password, int response)
 
 User* Organization::authenticate(string userName, string password)
 {
+	// we are making Authentication
 	for (auto i : allUsers) {
 		if (i->checkUsernameWithPassword(userName,password)) {
 			
@@ -290,6 +300,9 @@ User* Organization::authenticate(string userName, string password)
 
 vector<string> Organization::formatAsVectorOfString(string s)
 {
+	// we are reading from the file a form like this {15,16,5};
+	// and return it as vectorOfString v[0]="15" v[1]="16" v[2]="5"
+
 	string str = s.substr(1, s.length() - 2);
 	vector<string>V;
 	stringstream  ss(str);
@@ -307,6 +320,9 @@ vector<string> Organization::formatAsVectorOfString(string s)
 }
 
 vector<Notification> Organization::readNotifications	(){
+
+	// we are reading Notifications
+
 
 	vector <Notification> notifications;
 	notifications.reserve(100);
@@ -329,6 +345,7 @@ vector<Notification> Organization::readNotifications	(){
 }
 
 vector<RentingProcess> Organization::readRentingProcesss() {
+	// we are reading RentingProcesses
 	vector<RentingProcess> rp;
 	rp.reserve(100);
 	ifstream readf("RentingProcesses.txt");
