@@ -193,23 +193,7 @@ void Owner::showMyCars(Organization* org)
 		}
 	}
 
-	/*
-	string ss = "0";
-	while (ss != "1" && ss != "2") {
-		cout << "do you want to show another car\n";
-		cout << "1- yes\n";
-		cout << "2- no\n";
-		cin >> ss;
-		if (ss == "1")
-			showMyCars(org);
-		else if (ss == "2")
-			displayInfo(org);
-		else {
-			system("cls");
-			cout << "unvlaid input please enter 1 or 2\n";
-		}
-	}
-	*/
+	
 }
 
 void Owner::showInbox(Organization* org)

@@ -41,6 +41,7 @@ void Organization::readFiles()
 
 		if ((id/100) % 10 <3) {
 			//Renter
+			
 			readFile>> currentCar;
 			readFile>> rentingProcessString;
 			vector<string>RentingProcessAsId=formatAsVectorOfString(rentingProcessString);
@@ -279,6 +280,7 @@ User* Organization::signUp(string _userName, string _password, int response)
 	}
 
 	allUsers.push_back(user);
+	writeFiles();
 	return user;
 
 }
@@ -345,7 +347,7 @@ vector<Notification> Organization::readNotifications	(){
 }
 
 vector<RentingProcess> Organization::readRentingProcesss() {
-	// we are reading RentingProcesses
+	// we are reading RentingProcesses from RentingProcesses.txt
 	vector<RentingProcess> rp;
 	rp.reserve(100);
 	ifstream readf("RentingProcesses.txt");

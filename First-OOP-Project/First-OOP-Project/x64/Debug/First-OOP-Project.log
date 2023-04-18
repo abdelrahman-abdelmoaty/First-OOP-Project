@@ -1,23 +1,4 @@
-﻿  Admin.cpp
-  Car.cpp
-D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Car.cpp(277,15): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Car.cpp(287,15): warning C4305: '*=': truncation from 'double' to 'float'
-  Date.cpp
-  First-OOP-Project.cpp
-  Notification.cpp
-  OpeningUI.cpp
-  Organization.cpp
+﻿  Organization.cpp
 D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Organization.cpp(61,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Organization.cpp(105,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Owner.cpp
-D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Owner.cpp(110,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Renter.cpp
-D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Renter.cpp(176,44): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  RentingProcess.cpp
-  User.cpp
-D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\User.cpp(12,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
-D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Owner.cpp(213): warning C4717: 'Owner::showMyCars': recursive on all control paths, function will cause runtime stack overflow
-D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Admin.cpp(94): warning C4717: 'Admin::displayAllCars': recursive on all control paths, function will cause runtime stack overflow
-D:\afterOma\First-OOP-Project\First-OOP-Project\First-OOP-Project\Admin.cpp(182): warning C4717: 'Admin::displayAllUsers': recursive on all control paths, function will cause runtime stack overflow
   First-OOP-Project.vcxproj -> D:\afterOma\First-OOP-Project\First-OOP-Project\x64\Debug\First-OOP-Project.exe

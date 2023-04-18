@@ -120,7 +120,7 @@ void Renter::showAvailableCars(Organization* org) {
 	cout << "To rent a car write its index\n";
 	int i = 1;
 	int h = 0;
-	vector<int>key(org->allCars.size());
+	vector<int>key(org->allCars.size()+100);
 
 	vector<Car> cars = org->allCars;
 	for (auto car : cars) {
@@ -193,7 +193,7 @@ void Renter::endRent(Organization* org) {
 
 
 	/*
-	the user is ending his rent and money is added for both admin and owner with commision Rate 
+	the user is ending his rent and money is added for both admin and owner with commision Rate		
 	*/
 	RentingProcess* lastRentingProcess = rentingProcesses[rentingProcesses.size() - 1];
 
