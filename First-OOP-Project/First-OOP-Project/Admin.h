@@ -1,20 +1,18 @@
 #pragma once
-#include "Car.h"
-
+#include "AdminModel.h"
+#include "AdminView.h"
+class AdminModel;
+class AdminView;
 class Organization;
 class Admin
 {
-private:
-	vector<Car*>carsToBeVerified;
-	void displayAllCars(Organization* org);
-	void displayAllUsers(Organization*org,int flag);
-	void showCarsToBeVerified(Organization *org);
-	
-	
 public:
+	AdminModel* adminModel;
+	AdminView* adminView;
 	static float totalMoney;
-	void displayInfo(Organization *org);
-	Admin(Organization *org);
+	void launch();
+	void verifyCarrr();
+	void executeUserCmd(int input);
 
 };
 
