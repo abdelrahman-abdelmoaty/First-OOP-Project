@@ -2,18 +2,31 @@
 
 using namespace std;
 
+
 Organization::Organization(){
-	allNotifications.reserve(100);
-	allRentingProcesses.reserve(100);
-	allCars.reserve(100);
+	allNotifications.reserve(200);
+	allRentingProcesses.reserve(200);
+	allCars.reserve(200);
 	
 }
 
+Organization* Organization::instance = NULL;
+
+
+Organization* Organization::getInstance()
+{
+	
+	if (instance == NULL) {
+
+		instance = new Organization();
+
+	}
+
+	return instance;
+}
 
 void Organization::readFiles()
 {
-
-
 
 	/*
 	
@@ -41,78 +54,49 @@ void Organization::readFiles()
 
 		if ((id/100) % 10 <3) {
 			//Renter
-			
 			readFile>> currentCar;
 			readFile>> rentingProcessString;
-			vector<string>RentingProcessAsId=formatAsVectorOfString(rentingProcessString);
-			vector<RentingProcess*>rp;
-
-			for (int i = 0; i < RentingProcessAsId.size(); i++) {
-
-				RentingProcess  rentingProcess = allRentingProcesses[stoi(RentingProcessAsId[i])];
-				
-
-				rp.push_back(&allRentingProcesses[stoi(RentingProcessAsId[i])]);
-
-
-			}
-
-
-
-			user = new Renter( to_string(id),name,password,totalMoney,currentCar,rp);
-
+			user = readRenter(id, name, password, totalMoney, currentCar, rentingProcessString);
 		}
 		else {
 			//Owner
 			readFile >> carString;
 			readFile >> inboxString;
-			vector<string>carIdsAsVector = formatAsVectorOfString(carString);
-			vector<string>inboxAsVector = formatAsVectorOfString(inboxString);
-		
-			vector<Car*>userCar;
-			vector<Notification*>userInbox	;
-
-			/*
-			for (auto notification : allNotifications) {
-				
-				
-				for (auto j : inboxAsVector) {
-					if (notification.checkId(j)) {
-						userInbox.push_back(&notification);
-					}
-				}
-			}
-
-			*/
-			for (int i = 0; i < allNotifications.size(); i++) {
-
-				for (int j = 0; j < inboxAsVector.size(); j++) {
-					if (allNotifications[i].checkId(inboxAsVector[j])) {
-
-						userInbox.push_back(&allNotifications[i]);
-					}
-
-
-				}
-
-			}
-
-			for (int i = 0; i < carIdsAsVector.size(); i++) {
-
-				userCar.push_back(&allCars[stoi(carIdsAsVector[i])]);
-			}
-
-			
-			user = new Owner(to_string(id), name, password, totalMoney, userCar, userInbox);
+			user = readOwner(id, name, password, totalMoney, carString, inboxString);
 	
 		}
 
 		allUsers.push_back(user);
 	}
 	readFile.close();
-
+}
+User* Organization::readRenter(int id, string name, string password, float totalMoney, string currentCar, string rentingProcessString) {
+	vector<string>RentingProcessAsId = formatAsVectorOfString(rentingProcessString);
+	vector<RentingProcess*>rp;
+	for (int i = 0; i < RentingProcessAsId.size(); i++) {
+		RentingProcess  rentingProcess = allRentingProcesses[stoi(RentingProcessAsId[i])];
+		rp.push_back(&allRentingProcesses[stoi(RentingProcessAsId[i])]);
+	}
+	return new Renter(to_string(id), name, password, totalMoney, currentCar, rp);
 }
 
+User* Organization::readOwner(int id, string name, string password, float totalMoney, string carString, string inboxString) {
+	vector<string>carIdsAsVector = formatAsVectorOfString(carString);
+	vector<string>inboxAsVector = formatAsVectorOfString(inboxString);
+	vector<Car*>userCar;
+	vector<Notification*>userInbox;
+	for (int i = 0; i < allNotifications.size(); i++) {
+		for (int j = 0; j < inboxAsVector.size(); j++) {
+			if (allNotifications[i].checkId(inboxAsVector[j])) {
+				userInbox.push_back(&allNotifications[i]);
+			}
+		}
+	}
+	for (int i = 0; i < carIdsAsVector.size(); i++) {
+		userCar.push_back(&allCars[stoi(carIdsAsVector[i])]);
+	}
+	return new Owner(to_string(id), name, password, totalMoney, userCar, userInbox);
+}
 
 void Organization::writeFiles()
 {
@@ -268,6 +252,7 @@ User* Organization::signUp(string _userName, string _password, int response)
 {
 
 	// we are creating a new ID and returning instance of user type to apply the polymorphism concept
+	// implementing factory design Pattern 
 	User* user;
 	int id = User::makeNewID(response);
 	//1 renter 2 owner

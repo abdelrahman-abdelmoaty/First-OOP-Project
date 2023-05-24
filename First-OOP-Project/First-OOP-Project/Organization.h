@@ -16,13 +16,19 @@ using namespace std;
 class Organization {
 
 
+private:
+	static Organization* instance;
+
+	Organization();
+	
 public:
-	 
+	
+	static Organization* getInstance();
+	Organization( const Organization& org) = delete;
 	vector<User*> allUsers;
 	vector<Car> allCars;
 	vector<Notification> allNotifications;
 	vector<RentingProcess> allRentingProcesses;
-	Organization();
 	void readFiles();
 	void writeFiles();
 	vector<Car> readCars();
@@ -31,6 +37,9 @@ public:
 	vector<string> formatAsVectorOfString(string s);
 	vector<Notification> readNotifications();
 	vector<RentingProcess>readRentingProcesss();
-	
+	User* readOwner(int id, string name, string password, float totalMoney, string carString, string inboxString);
+	User* readRenter(int id, string name, string password, float totalMoney, string currentCar, string rentingProcessString);
+
 };
+
 

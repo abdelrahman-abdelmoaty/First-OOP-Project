@@ -16,7 +16,7 @@ Owner::Owner(string _id, string _userName, string _password, int _totalMoney) :U
 }
 
 
-void Owner::displayInfo(Organization* org)
+void Owner::displayInfo()
 {
 	// we are displaying  the openning UI of the Owner
 	int i = 0;
@@ -39,11 +39,11 @@ void Owner::displayInfo(Organization* org)
 		string input = "0";
 		cin >> input;
 		if (input == "1") {
-			addNewCar(org);
+			addNewCar();
 			i = 0;
 		}
 		else if (input == "2") {
-			showMyCars(org);
+			showMyCars();
 			i = 0;
 		}	
 		else if (input == "3") {
@@ -54,12 +54,12 @@ void Owner::displayInfo(Organization* org)
 
 			}
 			else {
-				showInbox(org);
+				showInbox();
 			}
 			i = 0;
 		}
 		else if (input == "4") {
-			openingUI(org);
+			openingUI();
 		}
 	}
 
@@ -100,9 +100,10 @@ string Owner::toBeWrittenInFile()
 
 }
 
-void Owner::addNewCar(Organization* org) {
+void Owner::addNewCar() {
 
 	system("cls");
+	Organization* org = Organization::getInstance();
 
 	// adding NewCar to be verified by the Admin
 
@@ -115,7 +116,7 @@ void Owner::addNewCar(Organization* org) {
 
 }
 
-void Owner::showMyCars(Organization* org)
+void Owner::showMyCars()
 {
 	
 	// show the only operting(verifiedCars) of the owner and onClick on an ID we show the rentingProcesses of the Car
@@ -138,7 +139,7 @@ void Owner::showMyCars(Organization* org)
 		cout << "You Don't have any operating Cars\n";
 		
 		system("pause");
-		displayInfo(org);
+		displayInfo();
 
 	}
 
@@ -149,7 +150,7 @@ void Owner::showMyCars(Organization* org)
 		cout << "Choose car no to show its history  or enter \"a\" to go back : ";
 		cin >> s;
 		if (s == "a")
-			displayInfo(org);
+			displayInfo();
 		else if (s[0] < '9' && s[0] > '0') {
 			flag = true;
 			if (s.size() > 1) {
@@ -168,7 +169,7 @@ void Owner::showMyCars(Organization* org)
 	if (n >= j||j<=0) {
 		cout << "unavailabe car id \n";
 		system("pause");
-		showMyCars(org);
+		showMyCars();
 		
 	}
 	else {
@@ -177,7 +178,7 @@ void Owner::showMyCars(Organization* org)
 		if (choosen->getRentingProcesses().size() == 0) {
 			cout << " This Car has no rentingProcesses\n";
 			system("pause");
-			showMyCars(org);
+			showMyCars();
 		}
 		else {
 			system("cls");
@@ -188,7 +189,7 @@ void Owner::showMyCars(Organization* org)
 				cout << '\n';
 			}
 			system("pause");
-			showMyCars(org);
+			showMyCars();
 			
 		}
 	}
@@ -196,7 +197,7 @@ void Owner::showMyCars(Organization* org)
 	
 }
 
-void Owner::showInbox(Organization* org)
+void Owner::showInbox()
 {
 
 	// we are displaying the inbox of the owenr and make it empty after it like normal notifications in any app
@@ -211,13 +212,15 @@ void Owner::showInbox(Organization* org)
 	inbox.clear();
 	
 	system("pause");
-	displayInfo(org);
+	displayInfo();
 
 
 }
 
-void Owner::changeMoney(float money, Organization* org)
+void Owner::changeMoney(float money)
 {
+	Organization* org = Organization::getInstance();
+
 	totalMoney += money;
 	inbox.push_back(&org->allNotifications[org->allNotifications.size() - 1]);
 

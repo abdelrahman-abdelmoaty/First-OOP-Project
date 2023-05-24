@@ -15,10 +15,10 @@ public:
 		vector<RentingProcess*>_rentingProcesses);
 	Renter();
 	Renter(string _id, string _userName, string _password, int _totalMoney);
-	void displayInfo(Organization* org);
+	void displayInfo();
 	string toBeWrittenInFile();
-	void showAvailableCars(Organization *org);
-	void endRent(Organization *org);
+	void showAvailableCars();
+	void endRent();
 	void displayData();
 	void displayTheUniqueHistory();
 };

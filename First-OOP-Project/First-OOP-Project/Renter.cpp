@@ -21,10 +21,12 @@ Renter::Renter(string _id, string _userName, string _password, int _totalMoney) 
 }
 
 
-void Renter::displayInfo(Organization* org)
+void Renter::displayInfo()
 {
 	// we are displaying the UI of the Renter 
 	int i = 0;
+	Organization* org = Organization::getInstance();
+
 	while (true) {
 		
 		if (i)
@@ -54,7 +56,7 @@ void Renter::displayInfo(Organization* org)
 				system("pause");
 				continue;
 			}
-			showAvailableCars(org);
+			showAvailableCars();
 			
 		}
 		else if (inp == "2") {
@@ -74,11 +76,11 @@ void Renter::displayInfo(Organization* org)
 		else if (inp == "4" && currentCar != "-1") {
 
 
-			endRent(org);
+			endRent();
 			i = 0;
 		}
 		else if (inp == "3") {
-			openingUI(org);
+			openingUI();
 			i = 0;
 		}
 	}
@@ -108,8 +110,9 @@ string Renter::toBeWrittenInFile()
 
 }
 
-void Renter::showAvailableCars(Organization* org) {
+void Renter::showAvailableCars() {
 
+	Organization* org = Organization::getInstance();
 
 	/* we are showing available cars to be rented by the owner under 2 conditions
 	1-these cars shouldn't be rented 
@@ -136,7 +139,7 @@ void Renter::showAvailableCars(Organization* org) {
 
 		cout << "sorry but there are no available cars now\n";
 		system("pause");
-		displayInfo(org);
+		displayInfo();
 		
 	}
 
@@ -147,7 +150,7 @@ void Renter::showAvailableCars(Organization* org) {
 		cout << "Choose car no to show it history or enter \"a\" to go back : ";
 		cin >> s;
 		if (s == "a")
-			displayInfo(org);
+			displayInfo();
 		else if (s[0] < '9' && s[0] > '0') {
 			flag = true;
 			if (s.size() > 1) {
@@ -165,7 +168,7 @@ void Renter::showAvailableCars(Organization* org) {
 	if (n >= i||n<=0) {
 		cout << "unavailabe car id \n";
 		system("pause");
-		showAvailableCars(org);
+		showAvailableCars();
 	}
 	else {
 		n = key[n];
@@ -189,12 +192,14 @@ void Renter::showAvailableCars(Organization* org) {
 	
 }
 
-void Renter::endRent(Organization* org) {
+void Renter::endRent() {
 
 
 	/*
 	the user is ending his rent and money is added for both admin and owner with commision Rate		
 	*/
+	Organization* org = Organization::getInstance();
+
 	RentingProcess* lastRentingProcess = rentingProcesses[rentingProcesses.size() - 1];
 
 	Car car = org->allCars[stoi(lastRentingProcess->getCarId())];
@@ -226,8 +231,8 @@ void Renter::endRent(Organization* org) {
 
 
 	rentingProcesses[rentingProcesses.size() - 1]->setIsRunning(0);
-	carOwner->changeMoney(cost * car.getCommision(), org);
-	changeMoney(cost, org);
+	carOwner->changeMoney(cost * car.getCommision());
+	changeMoney(cost);
 	cout << "You have rented " << currentCarsss << " for " << duration << " hours " << " and the cost is " << cost<<'\n';
 
 	org->writeFiles();

@@ -13,9 +13,9 @@ using namespace std;
  int main() {
      
      // we are initializing the Organization which is responisble for reading and writing 
-    Organization org;
-    org.readFiles();
-    openingUI(&org);
+    Organization* org=Organization::getInstance();
+    org->readFiles();
+    openingUI();
     
     
 }

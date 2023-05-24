@@ -6,8 +6,10 @@
 #include "Owner.h"
 #include"Organization.h"
 using namespace std;
-void openingUI(Organization *org) {
+void openingUI() {
     
+    Organization* org = Organization::getInstance();
+
     /*
     the openning of the program  you can
     1- sign in 
@@ -51,11 +53,11 @@ void openingUI(Organization *org) {
                     cin >> c;
                     if (c == '2')
                     {
-                        openingUI(org);
+                        openingUI();
                     }
                 }
                 else
-                    user->displayInfo(org);
+                    user->displayInfo();
             }
         }
         else  if (n == "2") {
@@ -76,7 +78,7 @@ void openingUI(Organization *org) {
                     int r = stoi(response);
                     User* user;
                     user = org->signUp(name, password, r);
-                    user->displayInfo(org);
+                    user->displayInfo();
                 }
                 else cout << "Unvalid input\n";
             }
@@ -90,8 +92,8 @@ void openingUI(Organization *org) {
                 cout << "Password: ";
                 cin >> password;
                 if (name == "admin" && password == "pass") {
-                    Admin a(org);
-                    a.displayInfo(org);
+                    Admin a;
+                    a.launch();
                 }
                 else {
                     char c = '0';
@@ -100,7 +102,7 @@ void openingUI(Organization *org) {
                     cin >> c;
                     if (c == '2')
                     {
-                        openingUI(org);
+                        openingUI();
                     }
                 }
             }

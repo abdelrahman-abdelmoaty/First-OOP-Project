@@ -30,7 +30,7 @@ bool User::checkUsernameWithPassword(string _username, string _password)
 }
 	
 
-void User::displayInfo(Organization* org)
+void User::displayInfo()
 {
 	// a virtual Function that displays the openning UI of owner or renter 
 	
@@ -69,7 +69,7 @@ string User::toBeWrittenInFile()
 
 }
 
-void User::changeMoney(float fees,Organization *org)
+void User::changeMoney(float fees)
 {
 	totalMoney += fees;
 }
