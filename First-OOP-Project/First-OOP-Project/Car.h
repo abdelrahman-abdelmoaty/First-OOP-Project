@@ -2,6 +2,7 @@
 #include<string>
 #include<vector>
 #include "RentingProcess.h"
+#include "CarSpecifications.h"
 using namespace std;
 
 
@@ -9,21 +10,13 @@ using namespace std;
 class Car
 {
 private:
-
-		string model;
+		CarSpecifications specs;
 		string carOwnerID;
-		vector<RentingProcess*>RentingProcesses;
-
-		int horsePower;
-		int torque;
-		string carType;
-		string gear;
-		int maxSpeed;
+		vector<RentingProcess*> RentingProcesses;
 		bool isRented;
 		int rentingPrice;
 		bool isVerified;
 		float commision;
-	
 public:
 	string ID;
 	float totalMoneyGotFromTheCar;

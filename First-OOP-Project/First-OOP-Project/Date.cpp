@@ -3,15 +3,15 @@
 using namespace std;
 
 Date::Date(){
-    minutes = hour = day = month = year = 0;
+    dateInformation.minutes = dateInformation.hour = dateInformation.day = dateInformation.month = dateInformation.year = 0;
 }
 
 Date::Date(int _minutes, int _hour, int _day, int _month, int _year){
-    minutes = _minutes;
-    hour = _hour;
-    day = _day;
-    month = _month;
-    year = _year;
+    dateInformation.minutes = _minutes;
+    dateInformation.hour = _hour;
+    dateInformation.day = _day;
+    dateInformation.month = _month;
+    dateInformation.year = _year;
 }
 
 
@@ -35,10 +35,10 @@ Date::Date(string _date) {
     arr[1] = stoi(arr1[1]);
     arr[2] = stoi(arr1[2]);
     arr[3] = stoi(arr1[3]);
-    hour = arr[0];
-    day = arr[1];
-    month = arr[2];
-    year = arr[3];
+    dateInformation.hour = arr[0];
+    dateInformation.day = arr[1];
+    dateInformation.month = arr[2];
+    dateInformation.year = arr[3];
 
 }
 
@@ -46,7 +46,7 @@ string Date::getString1()
 {
     // we are converting a Date to String to be printed
     string str;
-    str = to_string(hour) + '/' + to_string(day) + '/' + to_string(month) + '/' + to_string(year);
+    str = to_string(dateInformation.hour) + '/' + to_string(dateInformation.day) + '/' + to_string(dateInformation.month) + '/' + to_string(dateInformation.year);
     return str;
 }
 
@@ -55,32 +55,32 @@ float Date::getDuration(Date _beginningDate)
     // we are trying to get number of hourse between the given date and current date
     float duration = 0;
     Date current = Date::getCurrentDate();
-    int year = current.year;
-    int month = current.month;
-    while (year > _beginningDate.year && month < _beginningDate.month) {
+    int year = current.dateInformation.year;
+    int month = current.dateInformation.month;
+    while (year > _beginningDate.dateInformation.year && month < _beginningDate.dateInformation.month) {
         duration += 365 * 24;
         year--;
     }
-    if (year > _beginningDate.year) {
-        duration +=  (current.month + 12 - _beginningDate.month) * 24 * 30;
+    if (year > _beginningDate.dateInformation.year) {
+        duration += (current.dateInformation.month + 12 - _beginningDate.dateInformation.month) * 24 * 30;
     }
-    int day = current.day;
-    while (month > _beginningDate.month && day < _beginningDate.day) {
+    int day = current.dateInformation.day;
+    while (month > _beginningDate.dateInformation.month && day < _beginningDate.dateInformation.day) {
         duration += 30 * 24;
         month--;
     }
-    if (month > _beginningDate.month) {
-        duration += (current.day + 30 - _beginningDate.day) * 24;
+    if (month > _beginningDate.dateInformation.month) {
+        duration += (current.dateInformation.day + 30 - _beginningDate.dateInformation.day) * 24;
     }
-    int hour = current.hour;
-    while (day > _beginningDate.day && hour < _beginningDate.hour) {
+    int hour = current.dateInformation.hour;
+    while (day > _beginningDate.dateInformation.day && hour < _beginningDate.dateInformation.hour) {
         duration += 24;
         day--;
     }
-    if (day > _beginningDate.day) {
-        duration += (current.hour + 24 - _beginningDate.hour);
+    if (day > _beginningDate.dateInformation.day) {
+        duration += (current.dateInformation.hour + 24 - _beginningDate.dateInformation.hour);
     }
-    while (hour > _beginningDate.hour) {
+    while (hour > _beginningDate.dateInformation.hour) {
         duration += 1;
         hour--;
     }
@@ -102,5 +102,5 @@ Date Date::getCurrentDate() {
 }
 
 void Date::displayDate(){
-    cout << day << "/" << month << "/" << year << " " << hour<<" ";
+    cout << dateInformation.day << "/" << dateInformation.month << "/" << dateInformation.year << " " << dateInformation.hour<<" ";
 }

@@ -54,7 +54,7 @@ void RentingProcess::displayInfo(string s)
 
 string RentingProcess::getWhatToWrite() {
 	// we are preparing the string that will be written in the File 
-	return(id + " " + carOwner +  " " + to_string(beginningDate.day) + "/" + to_string(beginningDate.month) + "/" + to_string(beginningDate.year) + " " + to_string(cost) + " " + to_string(isRunning) + " " + to_string(duration));
+	return(id + " " + carOwner +  " " + to_string(beginningDate.dateInformation.day) + "/" + to_string(beginningDate.dateInformation.month) + "/" + to_string(beginningDate.dateInformation.year) + " " + to_string(cost) + " " + to_string(isRunning) + " " + to_string(duration));
 }
 
 bool RentingProcess::getIsRunning()

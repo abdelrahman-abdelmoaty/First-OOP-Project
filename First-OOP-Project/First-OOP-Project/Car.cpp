@@ -12,9 +12,11 @@ Car::Car()
 
 
 
-Car::Car(string _model, int _maxSpeed, int _rentingPrice,vector<RentingProcess*>_rentingProcesses) :model(_model), maxSpeed(_maxSpeed),
+Car::Car(string _model, int _maxSpeed, int _rentingPrice,vector<RentingProcess*>_rentingProcesses) :
 isRented(false), rentingPrice(_rentingPrice)
 {
+	specs.maxSpeed = _maxSpeed;
+	specs.model = _model;
 	this->RentingProcesses = _rentingProcesses;
 
 }
@@ -34,7 +36,7 @@ void Car::displayInfo()
 	// displaying Car specs
 	string isRenteds = isRented ? "YES" : "NO";
 	string isVerifieds = isVerified ? "YES" : "NO";
-	cout << "model: " << model << "\t\tRentingPrice: " << rentingPrice << " EGP\n\n" << "HorsePower: " << horsePower << " HP\t\t" << "toruq: " << torque << " N-m\n\n";
+	cout << "model: " << specs.model << "\t\tRentingPrice: " << rentingPrice << " EGP\n\n" << "HorsePower: " << specs.horsePower << " HP\t\t" << "toruq: " << specs.torque << " N-m\n\n";
 	cout << "isRented: " << isRenteds << "\t\t\tisVerified: " << isVerifieds<< "\n\n";
 
 	cout << "totalMoneyPaidOnThisCar: " << totalMoneyGotFromTheCar<< "\n";
@@ -45,7 +47,7 @@ void Car::displayInfo()
 }
 string Car::getModel() {
 
-	return model;
+	return specs.model;
 }
 
 string Car::getID()
@@ -60,22 +62,22 @@ string Car::getCarOwnerID()
 
 string Car::getCarType()
 {
-	return carType;
+	return specs.carType;
 }
 
 string Car::getGear()
 {
-	return gear;
+	return specs.gear;
 }
 
 int Car::getHorsePower()
 {
-	return horsePower;
+	return specs.horsePower;
 }
 
 int Car::getTorque()
 {
-	return torque;
+	return specs.torque;
 }
 
 int Car::getRentingPrice()
@@ -84,7 +86,7 @@ int Car::getRentingPrice()
 }
 
 int Car::getMAxSpeed() {
-	return maxSpeed;
+	return specs.maxSpeed;
 }
 
 bool Car::getRentingStatus()
@@ -108,7 +110,7 @@ string Car::getWhatToBeWrittenInFile()
 	// here we preparing the string that will be written in cars file
 	string s;
 	s += ID; s += " ";
-	s += model; s += " ";
+	s += specs.model; s += " ";
 	s += carOwnerID; s += " ";
 	s += "{";
 	int c = 0;
@@ -120,11 +122,11 @@ string Car::getWhatToBeWrittenInFile()
 		
 	}
 	s += "} ";
-	s += to_string(horsePower); s += " ";
-	s += to_string(torque); s += " ";
-	s += carType; s += " ";
-	s += gear; s += " ";
-	s += to_string(maxSpeed); s += " ";
+	s += to_string(specs.horsePower); s += " ";
+	s += to_string(specs.torque); s += " ";
+	s += specs.carType; s += " ";
+	s += specs.gear; s += " ";
+	s += to_string(specs.maxSpeed); s += " ";
 	s += to_string(isRented); s += " ";
 	s += to_string(rentingPrice); s += " ";
 	s += to_string(isVerified); s += " ";
@@ -152,26 +154,26 @@ void Car::setCarOwnerID(string idd)
 
 void Car::setCarType(string t)
 {
-	carType = t;
+	specs.carType = t;
 }
 
 void Car::setGear(string g)
 {
-	gear = g;
+	specs.gear = g;
 }
 
 void Car::setModel(string m) {
-	model = m;
+	specs.model = m;
 }
 
 void Car::setHorsePower(int hp)
 {
-	horsePower = hp;
+	specs.horsePower = hp;
 }
 
 void Car::setTorque(int tor)
 {
-	torque = tor;
+	specs.torque = tor;
 }
 
 void Car::setRentingPrice(int p)
@@ -181,7 +183,7 @@ void Car::setRentingPrice(int p)
 
 void Car::setMaxSpeed(int s)
 {
-	maxSpeed = s;
+	specs.maxSpeed = s;
 }
 
 void Car::setRentingStatus(bool r)
@@ -204,7 +206,7 @@ void Car::getCarInput(int _id, int _carOwnerID)
 	isVerified = false;
 	this->carOwnerID = to_string(_carOwnerID);
 	cout << "Model: ";
-	cin >> model;
+	cin >> specs.model;
 	while (!flag) {
 		cout << "HorsePower: ";
 		cin >> s;
@@ -219,7 +221,7 @@ void Car::getCarInput(int _id, int _carOwnerID)
 		}
 	}
 	flag = false;
-	horsePower = stoi(s);
+	specs.horsePower = stoi(s);
 
 	while (!flag) {
 		cout << "Torque: ";
@@ -235,12 +237,12 @@ void Car::getCarInput(int _id, int _carOwnerID)
 		}
 	}
 	flag = false;
-	torque = stoi(s);
+	specs.torque = stoi(s);
 
 	cout << "Car Type: ";
-	cin >> carType;
+	cin >> specs.carType;
 	cout << "Gear: ";
-	cin >> gear;
+	cin >> specs.gear;
 
 	while (!flag) {
 		cout << "Speed: ";
@@ -256,7 +258,7 @@ void Car::getCarInput(int _id, int _carOwnerID)
 		}
 	}
 	flag = false;
-	maxSpeed = stoi(s);
+	specs.maxSpeed = stoi(s);
 
 	while (!flag) {
 		cout << "CarPricePerH: ";
