@@ -11,7 +11,6 @@ public:
 	AdminView* adminView;
 	static float totalMoney;
 	void launch();
-	void verifyCarrr();
 	void executeUserCmd(int input);
 
 };

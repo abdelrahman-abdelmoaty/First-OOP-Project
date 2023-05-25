@@ -1,5 +1,6 @@
 #include "AdminView.h"
 #include "OpeningUI.h"
+#include"Helper.h"
 
 void AdminView::displayAllCars(vector<Car*> carsToBeVerified)
 {
@@ -15,7 +16,7 @@ void AdminView::displayAllCars(vector<Car*> carsToBeVerified)
 				system("cls");
 			}
 			cout << counter << ":\n";
-			cout << org->allUsers[stoi(org->allCars[i].getCarOwnerID()) - 300]->username << "\n";
+			cout << org->allUsers[stoi(org->allCars[i].getCarOwnerID()) - Helper::STARTING_ID_OF_OWNERS]->username << "\n";
 
 			org->allCars[i].displayInfo();
 			key[counter] = i;
@@ -278,7 +279,7 @@ int AdminView::displayInfo(vector<Car*> carsToBeVerified)
 		//cout << "total money: " << totalMoney << '\n';
 		cout << "1-Cars To be verified\n";
 		cout << "2-show all verified Cars\n";
-		cout << "3-show all Renter\n";
+		cout << "3-show all Renters\n";
 		cout << "4-show all Owners\n";
 		cout << "5-go back\n";
 		string inp = "0";

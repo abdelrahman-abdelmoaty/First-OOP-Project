@@ -22,7 +22,8 @@ private:
 	Organization();
 	
 public:
-	
+	static const int STARTING_ID_OF_RENTERS = 100;
+	static const int STARTING_ID_OF_OWNERS = 300;
 	static Organization* getInstance();
 	Organization( const Organization& org) = delete;
 	vector<User*> allUsers;

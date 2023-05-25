@@ -1,6 +1,9 @@
 #include "User.h"
+#include"Helper.h"
 #include<iostream>
 
+
+// replacing magic numbers with constants
 
 int User::nOfUsers = 0;
 User::User(string _id, string _username, string _password,int _totalMoney)
@@ -43,10 +46,12 @@ int User::makeNewID(int i)
 	int h = 0;
 	if (i == 1) {
 
-		h = nOfUsers + 100;
+		h = nOfUsers + Helper::STARTING_ID_OF_RENTERS;
+		// replacing magic numbers with constants
 	}
 	else {
-		h = nOfUsers + 300;
+		h = nOfUsers + Helper::STARTING_ID_OF_OWNERS;
+		// replacing magic numbers with constants
 	}
 	return h;
 

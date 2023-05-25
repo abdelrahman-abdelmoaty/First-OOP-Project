@@ -1,6 +1,7 @@
 #include "Renter.h"
 #include"Organization.h"
 #include"OpeningUI.h"
+#include"Helper.h"
 
 
 Renter::Renter(string _id, string _userName, string _password, int _totalMoney, string _currentCar, vector<RentingProcess*> _rentingProcesses) :User(_id, _userName, _password, _totalMoney)
@@ -209,7 +210,7 @@ void Renter::endRent() {
 
 	string CarOwnerID = car.getCarOwnerID();
 
-	User* carOwner = org->allUsers[stoi(CarOwnerID) - 300];
+	User* carOwner = org->allUsers[stoi(CarOwnerID) - Helper::STARTING_ID_OF_OWNERS];
 
 
 

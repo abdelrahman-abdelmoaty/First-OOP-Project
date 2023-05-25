@@ -1,4 +1,5 @@
 #include "AdminModel.h"
+#include"Helper.h"
 
 void AdminModel::initializeCarsToBeVerified() {
 	Organization* org = Organization::getInstance();
@@ -17,7 +18,7 @@ void AdminModel::confirm(int input) {
 	type = "newCarAdded";
 	cout << "You verified this car\n";
 	system("pause");
-	User* owner = org->allUsers[stoi(carsToBeVerified[input]->getCarOwnerID()) - 300];
+	User* owner = org->allUsers[stoi(carsToBeVerified[input]->getCarOwnerID()) - Helper::STARTING_ID_OF_OWNERS];
 	Date d = Date::getCurrentDate();
 	Notification n(type, to_string(org->allNotifications.size()), (carsToBeVerified[input]->getModel()), "-1", d.getString1());
 	org->allNotifications.push_back(n);
@@ -33,7 +34,7 @@ void AdminModel::reject(int input) {
 	carsToBeVerified[input]->setVerification(false);
 	cout << "You refused this car\n";
 	system("pause");
-	User* owner = org->allUsers[stoi(carsToBeVerified[input]->getCarOwnerID()) - 300];
+	User* owner = org->allUsers[stoi(carsToBeVerified[input]->getCarOwnerID()) - Helper::STARTING_ID_OF_OWNERS];
 	Date d = Date::getCurrentDate();
 	Notification n(type, to_string(org->allNotifications.size()), (carsToBeVerified[input]->getModel()), "-1", d.getString1());
 	org->allNotifications.push_back(n);

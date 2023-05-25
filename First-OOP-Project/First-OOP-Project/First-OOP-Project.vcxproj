@@ -128,9 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
+    <ClCompile Include="AdminModel.cpp" />
+    <ClCompile Include="AdminView.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="First-OOP-Project.cpp" />
+    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Notification.cpp" />
     <ClCompile Include="OpeningUI.cpp" />
     <ClCompile Include="Organization.cpp" />
@@ -141,8 +144,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
+    <ClInclude Include="AdminModel.h" />
+    <ClInclude Include="AdminView.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="Date.h" />
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="Notification.h" />
     <ClInclude Include="OpeningUI.h" />
     <ClInclude Include="Organization.h" />

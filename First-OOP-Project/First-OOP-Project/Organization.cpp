@@ -1,4 +1,5 @@
 #include "Organization.h"
+#include"Helper.h"
 
 using namespace std;
 
@@ -52,7 +53,7 @@ void Organization::readFiles()
 		readFile >> password;
 		readFile >> totalMoney;
 
-		if ((id/100) % 10 <3) {
+		if ((id/Helper::STARTING_ID_OF_RENTERS) % 10 <3) {
 			//Renter
 			readFile>> currentCar;
 			readFile>> rentingProcessString;
