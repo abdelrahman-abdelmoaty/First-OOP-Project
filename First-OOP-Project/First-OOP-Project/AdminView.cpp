@@ -41,10 +41,10 @@ void AdminView::displayAllCars(vector<Car*> carsToBeVerified)
 		cin >> s;
 		if (s == "a")
 			displayInfo(carsToBeVerified);
-		else if (s[0] < '9' && s[0] > '0') {
+		else if ((Helper::checkDigit(s[0]))) {
 			ff = true;
 			if (s.size() > 1) {
-				if (s[1] < '9' && s[1] > '0') {
+				if ((Helper::checkDigit(s[1]))) {
 				}
 				else ff = false;
 			}
@@ -143,10 +143,10 @@ void AdminView::displayAllUsers(int flag, vector<Car*> carsToBeVerified)
 		cin >> s;
 		if (s == "a")
 			displayInfo(carsToBeVerified);
-		else if (s[0] < '9' && s[0] > '0') {
+		else if ((Helper::checkDigit(s[0]))) {
 			ff = true;
 			if (s.size() > 1) {
-				if (s[1] < '9' && s[1] > '0') {
+				if ((Helper::checkDigit(s[1]))) {
 				}
 				else ff = false;
 			}
@@ -217,10 +217,10 @@ pair<int,int> AdminView::showCarsToBeVerified(vector<Car*> carsToBeVerified)
 		cin >> s;
 		if (s == "a")
 			displayInfo(carsToBeVerified);
-		else if (s[0] < '9' && s[0] > '0') {
+		else if ((Helper::checkDigit(s[0]))) {
 			flag = true;
 			if (s.size() > 1) {
-				if (s[1] < '9' && s[1] > '0') {
+				if ((Helper::checkDigit(s[1]))) {
 				}
 				else flag = false;
 			}

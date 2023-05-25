@@ -1,5 +1,6 @@
 #include "Owner.h"
 #include "Organization.h"
+#include "Helper.h"
 #include"OpeningUI.h"
 
 Owner::Owner(string _id, string _userName, string _password, int _totalMoney, vector<Car*> _cars, vector<Notification*> _inbox)
@@ -151,10 +152,10 @@ void Owner::showMyCars()
 		cin >> s;
 		if (s == "a")
 			displayInfo();
-		else if (s[0] < '9' && s[0] > '0') {
+		else if ((Helper::checkDigit(s[0]))) {
 			flag = true;
 			if (s.size() > 1) {
-				if (s[1] < '9' && s[1] > '0') {
+				if ((Helper::checkDigit(s[1]))) {
 				}
 				else flag = false;
 			}

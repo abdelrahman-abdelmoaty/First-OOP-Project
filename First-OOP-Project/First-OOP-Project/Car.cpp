@@ -1,4 +1,5 @@
 #include "Car.h"
+#include"Helper.h"
 using namespace std;
 
 Car::Car()
@@ -209,7 +210,7 @@ void Car::getCarInput(int _id, int _carOwnerID)
 		cin >> s;
 		flag = true;
 		for (int i = 0; i < s.size(); i++) {
-			if (!(s[i] >= '0' && s[i] <= '9'))
+			if (!(Helper::checkDigit(s[i])))
 			{
 				cout << "Unvalid input, please enter an Integer\n";
 				flag = false;
@@ -225,7 +226,7 @@ void Car::getCarInput(int _id, int _carOwnerID)
 		cin >> s;
 		flag = true;
 		for (int i = 0; i < s.size(); i++) {
-			if (!(s[i] >= '0' && s[i] <= '9'))
+			if (!(Helper::checkDigit(s[i])))
 			{
 				cout << "Unvalid input, please enter an Integer\n";
 				flag = false;
@@ -246,7 +247,7 @@ void Car::getCarInput(int _id, int _carOwnerID)
 		cin >> s;
 		flag = true;
 		for (int i = 0; i < s.size(); i++) {
-			if (!(s[i] >= '0' && s[i] <= '9'))
+			if (!(Helper::checkDigit(s[i])))
 			{
 				cout << "Unvalid input, please enter an Integer\n";
 				flag = false;
@@ -262,7 +263,7 @@ void Car::getCarInput(int _id, int _carOwnerID)
 		cin >> s;
 		flag = true;
 		for (int i = 0; i < s.size(); i++) {
-			if (!(s[i] >= '0' && s[i] <= '9'))
+			if (!(Helper::checkDigit(s[i])))
 			{
 				cout << "Unvalid input, please enter an Integer\n";
 				flag = false;
@@ -282,14 +283,14 @@ void Car::getCarInput(int _id, int _carOwnerID)
 		for (int i = 0; i < s.size(); i++) {
 			if (s[i] == '.') {
 				for (int j = i + 1; j < s.size(); j++) {
-					if ((s[j] >= '0' && s[j] <= '9')) {
+					if ((Helper::checkDigit(s[j]))) {
 						x += y * (s[j] - '0');
 						y *= 0.1;
 					}
 				}
 				break;
 			}
-			if (!(s[i] >= '0' && s[i] <= '9'))
+			if (!(Helper::checkDigit(s[i])))
 			{
 				cout << "Unvalid input, please enter a number from 0 to 1 \n";
 				flag = false;
